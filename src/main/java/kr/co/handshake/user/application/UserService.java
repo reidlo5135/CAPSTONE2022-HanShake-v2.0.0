@@ -21,8 +21,8 @@ public class UserService {
     public UserInfoDto save(UserCreateDto userCreateDto) {
         try {
             return UserInfoDto.from(userRepository.save(userCreateDto.toEntity()));
-        } catch (Exception error) {
-            throw new UserCreateException(error);
+        } catch (Exception e) {
+            throw new UserCreateException(e);
         }
     }
 

@@ -1,6 +1,6 @@
 package kr.co.handshake.user.domain;
 
-import kr.co.handshake.common.BaseEntity;
+import kr.co.handshake.common.domain.BaseEntity;
 import kr.co.handshake.user.domain.exception.UserAuthenticationFailException;
 import lombok.*;
 
