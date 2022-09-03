@@ -3,6 +3,7 @@ package kr.co.handshake.user.presentation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kr.co.handshake.auth.advice.LoggedInUser;
+import kr.co.handshake.common.domain.SingleResult;
 import kr.co.handshake.user.application.UserService;
 import kr.co.handshake.user.dto.UserCreateDto;
 import kr.co.handshake.user.dto.UserInfoDto;
@@ -20,19 +21,19 @@ public class UserController {
 
     @ApiOperation(value = "회원가입", notes = "User SignUp")
     @PostMapping("/signup")
-    public ResponseEntity<UserInfoDto> create(@RequestBody UserCreateDto userCreateDto) {
+    public ResponseEntity<SingleResult<UserInfoDto>> create(@RequestBody UserCreateDto userCreateDto) {
         return ResponseEntity.ok().body(userService.save(userCreateDto));
     }
 
     @ApiOperation(value = "token으로 로그인 한 회원 정보 조회", notes = "LoggedInUser Info")
     @GetMapping("/myinfo")
-    public ResponseEntity<UserInfoDto> read(@LoggedInUser UserInfoDto userInfoDto) {
+    public ResponseEntity<SingleResult<UserInfoDto>> read(@LoggedInUser UserInfoDto userInfoDto) {
         return ResponseEntity.ok().body(userService.findInfoDtoById(userInfoDto.getId()));
     }
 
     @ApiOperation(value = "user_id로 회원 정보 조회", notes = "Read UserInfo By user_id")
     @GetMapping("/{userId}")
-    public ResponseEntity<UserInfoDto> read(@PathVariable long userId) {
+    public ResponseEntity<SingleResult<UserInfoDto>> read(@PathVariable long userId) {
         return ResponseEntity.ok().body(userService.findInfoDtoById(userId));
     }
 
@@ -44,7 +45,7 @@ public class UserController {
 
     @ApiOperation(value = "회원 정보 수정", notes = "Update User Info")
     @PutMapping
-    public ResponseEntity<UserInfoDto> update(@RequestBody UserUpdateDto userUpdateDto, @LoggedInUser UserInfoDto userInfoDto) {
+    public ResponseEntity<SingleResult<UserInfoDto>> update(@RequestBody UserUpdateDto userUpdateDto, @LoggedInUser UserInfoDto userInfoDto) {
         return ResponseEntity.ok().body(userService.update(userUpdateDto, userInfoDto.getId()));
     }
 
