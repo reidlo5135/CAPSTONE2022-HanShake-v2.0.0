@@ -22,4 +22,5 @@ src/frontend/node_modules
 
 ## server ##
 src/main/resources/application-private.yml
+src/main/java/kr/co/handshake/auth/WebToken.java
 
