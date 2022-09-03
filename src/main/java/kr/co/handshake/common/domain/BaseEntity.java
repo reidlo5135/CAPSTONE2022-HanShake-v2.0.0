@@ -1,4 +1,4 @@
-package kr.co.handshake.common;
+package kr.co.handshake.common.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

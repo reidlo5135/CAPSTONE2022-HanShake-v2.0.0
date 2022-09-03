@@ -1,7 +1,7 @@
 package kr.co.handshake.user.domain;
 
-import kr.co.handshake.common.BaseEntity;
-import kr.co.handshake.user.domain.exception.UserAuthenticationFailException;
+import kr.co.handshake.common.domain.BaseEntity;
+import kr.co.handshake.user.exception.UserAuthenticationFailException;
 import lombok.*;
 
 import javax.persistence.*;

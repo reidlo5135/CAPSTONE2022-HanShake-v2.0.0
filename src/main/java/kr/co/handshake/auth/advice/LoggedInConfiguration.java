@@ -15,12 +15,6 @@ public class LoggedInConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(loggedInInterceptor)
                 .excludePathPatterns("/")
                 .excludePathPatterns("/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs")
-                .excludePathPatterns("/css/*")
-                .excludePathPatterns("/js/*")
-                .excludePathPatterns("/img/**")
-                .excludePathPatterns("/index.html")
-                .excludePathPatterns("/login")
-                .excludePathPatterns("/docs/**")
                 .excludePathPatterns("/v1/api/users/signup")
                 .excludePathPatterns("/v1/api/oauth/**");
     }
