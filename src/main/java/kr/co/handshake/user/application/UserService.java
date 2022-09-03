@@ -1,5 +1,7 @@
 package kr.co.handshake.user.application;
 
+import kr.co.handshake.common.application.ResponseService;
+import kr.co.handshake.common.domain.SingleResult;
 import kr.co.handshake.user.domain.User;
 import kr.co.handshake.user.domain.UserRepository;
 import kr.co.handshake.user.dto.UserCreateDto;
@@ -15,32 +17,33 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    public static final String LOGGED_IN_USER_SESSION_KEY = "LOGGED_IN_USER";
     private final UserRepository userRepository;
+    private final ResponseService responseService;
 
-    public UserInfoDto save(UserCreateDto userCreateDto) {
+    public SingleResult<UserInfoDto> save(UserCreateDto userCreateDto) {
         try {
-            return UserInfoDto.from(userRepository.save(userCreateDto.toEntity()));
+            return responseService.getSingleResult(UserInfoDto.from(userRepository.save(userCreateDto.toEntity())));
         } catch (Exception e) {
             throw new UserCreateException(e);
         }
     }
 
-    public UserInfoDto findInfoDtoById(long userId) {
-        return UserInfoDto.from(findById(userId));
+    public SingleResult<UserInfoDto> findInfoDtoById(long userId) {
+        return responseService.getSingleResult(UserInfoDto.from(findById(userId)));
     }
 
+    @Transactional(readOnly = true)
     public User findById(long userId) {
         return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 
     @Transactional
-    public UserInfoDto update(UserUpdateDto userUpdateDto, long userId) {
+    public SingleResult<UserInfoDto> update(UserUpdateDto userUpdateDto, long userId) {
         User findUser = findById(userId);
         findUser.update(userUpdateDto.toEntity());
         findUser.activate();
 
-        return UserInfoDto.from(findUser);
+        return responseService.getSingleResult(UserInfoDto.from(findUser));
     }
 
     @Transactional
@@ -50,6 +53,7 @@ public class UserService {
                 .deactivate();
     }
 
+    @Transactional(readOnly = true)
     public User authenticate(UserLoginDto userLoginDto) {
         User loginUser = userLoginDto.toEntity();
         return userRepository.findByEmailAndPassword(loginUser.getEmail(), loginUser.getPassword()).orElseThrow(UserNotFoundException::new);
