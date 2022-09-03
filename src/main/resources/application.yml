@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    include: private, local
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error

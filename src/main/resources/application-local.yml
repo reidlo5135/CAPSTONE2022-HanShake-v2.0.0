@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: warn
+    kr.co.handshake: debug #debug info warn error fatal off
+
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
