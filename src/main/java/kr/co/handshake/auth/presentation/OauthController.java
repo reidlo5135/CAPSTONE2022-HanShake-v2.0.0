@@ -1,4 +1,4 @@
-package kr.co.handshake.auth.controller;
+package kr.co.handshake.auth.presentation;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
