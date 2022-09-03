@@ -1,4 +1,4 @@
-package kr.co.handshake.user.domain.exception;
+package kr.co.handshake.user.exception;
 
 public class UserAuthenticationFailException extends RuntimeException{
     private static final String MESSAGE = "수정권한이 없는 유저입니다.";
