@@ -15,7 +15,12 @@
 <img src="https://img.shields.io/badge/JUnit5-25A162?style=for-the-badge&logo=JUnit5&logoColor=white">
 <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"><br>
-<img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+<img src="https://img.shields.io/badge/express.js-000000?style=for-the-badge&logo=express&logoColor=white">
+<img src="https://img.shields.io/badge/NodeMon-76D04B?style=for-the-badge&logo=NodeMon&logoColor=white">
+<img src="https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=Npm&logoColor=white">
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"><br>
 <img src="https://img.shields.io/badge/react-0769AD?style=for-the-badge&logo=react&logoColor=White">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
@@ -34,8 +39,8 @@
 
 - Design - Figma, Adobe Xd
 - Frontend - React.js, HTML5, CSS3, JavaScript, MediaPipe, TensorFlow
-- Backend - Spring Boot, Spring Security, OAuth2.0, REST API, Swagger, Json Web Token, JAVA(11)
-- Database - MySQL, Spring Data JPA, AWS RDS, AWS S3
+- Backend - Spring Boot, REST API, Swagger, Java(11), Node-Express, TypeScript
+- Database - MySQL8.0, Spring Data JPA, AWS RDS, AWS S3
 - WAS - Apache Tomcat, AWS EC2
 - Version Control - Git, GitHub, Git Kraken
 - IDE - IntelliJ IDEA Ultimate, Visual Studio Code
