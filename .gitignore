@@ -23,5 +23,5 @@ src/frontend/package-lock.json
 src/frontend/build/
 
 ## server ##
-src/main/resources/application-private.yml
+server/boot/src/main/resources/application-private.yml
 
