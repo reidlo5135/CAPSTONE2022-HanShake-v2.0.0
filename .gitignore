@@ -1,9 +1,9 @@
-HELP.md
-.gradle
-gradlew
-gradlew.bat
-settings.gradle
-build/
+server/boot/HELP.md
+server/boot/.gradle
+server/boot/gradlew
+server/boot/gradlew.bat
+server/boot/settings.gradle
+server/boot/build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
