@@ -18,10 +18,14 @@ out/
 !**/src/test/**/out/
 
 ## frontend ##
-src/frontend/node_modules
-src/frontend/package-lock.json
-src/frontend/build/
+client/node_modules
+client/package-lock.json
+client/build/
 
-## server ##
+## server - boot ##
 server/boot/src/main/resources/application-private.yml
+
+## server - express ##
+server/express/node_modules
+server/express/package-lock.json
 
