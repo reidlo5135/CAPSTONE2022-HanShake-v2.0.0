@@ -29,7 +29,7 @@ public class LoggerAspect {
         return result;
     }
 
-    @Around(value = "execution(public * kr.co.handshake.*.domain.*Repo.*(..))")
+    @Around(value = "execution(public * kr.co.handshake.*.domain.*Repository.*(..))")
     public Object logRepositories(ProceedingJoinPoint pjp) throws Throwable {
         log.info(">> Repository Request : {}.{}({})", pjp.getTarget().getClass().getInterfaces()[0].getName(), pjp.getSignature().getName(), pjp.getArgs());
         Object result = pjp.proceed();

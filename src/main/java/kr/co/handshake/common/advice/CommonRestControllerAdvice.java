@@ -2,8 +2,6 @@ package kr.co.handshake.common.advice;
 
 import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.domain.CommonResult;
-import kr.co.handshake.user.exception.UserCreateException;
-import kr.co.handshake.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -34,17 +32,6 @@ public class CommonRestControllerAdvice {
                 (Integer.parseInt(getMessage("unKnown.code")), getMessage("unKnown.msg"));
     }
 
-    /***
-     * -1000
-     * 유저를 찾지 못했을 때 발생시키는 예외
-     */
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult userNotFoundException(HttpServletRequest request, UserNotFoundException e) {
-        e.printStackTrace();
-        return responseService.getFailResult(Integer.parseInt(getMessage("userNotFound.code")), getMessage("userNotFound.msg"));
-    }
-
     /**
      * -1004
      * 권한이 없는 리소스를 요청한 경우 발생 시키는 예외
@@ -55,19 +42,6 @@ public class CommonRestControllerAdvice {
         e.printStackTrace();
         return responseService.getFailResult(
                 Integer.parseInt(getMessage("accessDenied.code")), getMessage("accessDenied.msg"));
-    }
-
-    /***
-     * -1008
-     * 기 가입자 에러
-     */
-    @ExceptionHandler(UserCreateException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    protected CommonResult existUserException(HttpServletRequest request, UserCreateException e) {
-        e.printStackTrace();
-        return responseService.getFailResult(
-                Integer.parseInt(getMessage("userExistException.code")), getMessage("userExistException.msg")
-        );
     }
 
     private String getMessage(String code) {
