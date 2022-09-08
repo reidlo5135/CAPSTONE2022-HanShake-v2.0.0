@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: private
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://handshakedb.cxogw3mpnveh.ap-northeast-2.rds.amazonaws.com/handShakeDB?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useUnicode=true&serverTimezone=Asia/Seoul
+    username: handShakeAdmin
+    password: III!2022
