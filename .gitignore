@@ -1,9 +1,3 @@
-server/boot/HELP.md
-server/boot/.gradle
-server/boot/gradlew
-server/boot/gradlew.bat
-server/boot/settings.gradle
-server/boot/build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -17,12 +11,18 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-## frontend ##
+## client - react ##
 client/node_modules
 client/package-lock.json
 client/build/
 
 ## server - boot ##
+server/boot/HELP.md
+server/boot/.gradle
+server/boot/gradlew
+server/boot/gradlew.bat
+server/boot/settings.gradle
+server/boot/build/
 server/boot/src/main/resources/application-private.yml
 
 ## server - express ##
