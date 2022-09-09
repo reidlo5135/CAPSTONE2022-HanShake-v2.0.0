@@ -1,4 +1,4 @@
-package kr.co.handshake.web;
+package kr.co.handshake.common.config;
 
 import net.rakugakibox.util.YamlResourceBundle;
 import org.springframework.beans.factory.annotation.Value;
