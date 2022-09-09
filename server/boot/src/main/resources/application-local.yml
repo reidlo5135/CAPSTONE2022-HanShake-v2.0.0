@@ -21,6 +21,12 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
