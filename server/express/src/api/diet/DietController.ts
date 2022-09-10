@@ -20,6 +20,26 @@ const findAll = async (req: Request, res: Response) => {
   );
 };
 
+const findTest = async (req: Request, res: Response) => {
+  service.crawlTest().then(
+    (resolve: Response) => {
+      console.log(
+        "DietController findTEST promise stringify : ",
+        JSON.stringify(resolve)
+      );
+      res.status(200).send({ code: 0, message: "success", data: resolve });
+    },
+    (reject: Error) => {
+      console.log(
+        "DietController findTEST promise reject : ",
+        JSON.stringify(reject)
+      );
+      res.send({ code: -1, message: "failed", error: reject });
+    }
+  );
+};
+
 export = {
   findAll,
+  findTest,
 };
