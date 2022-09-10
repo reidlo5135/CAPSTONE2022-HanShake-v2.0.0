@@ -72,4 +72,5 @@ server/boot/src/main/resources/application-private.yml
 ## server - express ##
 server/express/node_modules
 server/express/package-lock.json
+server/express/.env
 
