@@ -1,73 +1,27 @@
-import axios from "axios";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cheerio = require("cheerio");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cheerioTableParser = require("cheerio-tableparser");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconv = require("iconv-lite");
+import crawlService from "../crawling/CrawlService";
+import {ElementHandle} from "puppeteer-core";
 
-// eslint-disable-next-line consistent-return
-const getHtml = async (url: string) => {
-  console.log("GetHTML URL : ", url);
-  try {
-    return await axios({
-      url,
-      method: "GET",
-      responseType: "arraybuffer",
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+const URL = "https://www.daelim.ac.kr/cms/FrCon/index.do?MENU_ID=1470";
+const SELECTOR = "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody";
 
-function crawlAll(): Promise<any> {
-  return new Promise<any>((resolve, reject) => {
-    getHtml("https://www.daelim.ac.kr/cms/FrCon/index.do?MENU_ID=1470").then(
-      (html: any) => {
-        const list: any[] = [];
-        const $ = cheerio.load(iconv.decode(html.data, "UTF-8"));
-        const $bodyList = $(
-          "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody"
-        );
-        $bodyList.each(function (i: any, elem: Element): any {
-          console.log("find : ", $(elem).html());
-          list[i] = {
-            corner: $(elem).find("tr > #text").text(),
-          };
-        });
+function crawlDietAll(): Promise<any> {
+  return new Promise<any>(async (resolve, reject) => {
+    await crawlService.commonCrawl(URL, SELECTOR).then(
+        async (response:ElementHandle) => {
+          const table = await response.evaluate(
+              () => Array.from(
+                  document.querySelectorAll(SELECTOR + " > tr"),
+                  row => Array.from(row.querySelectorAll('th, td'), cell => cell.textContent)
+              )
+          );
+          console.log("Table : ", table);
 
-        const data = list.filter((n) => n.corner);
-        console.log("DATA : ", data);
-        resolve(data);
-      }
-    );
-  });
-}
-
-function crawlTest(): Promise<any> {
-  return new Promise<any>((resolve, reject) => {
-    getHtml("https://github.com/reidlo5135").then((html: any) => {
-      const list: any[] = [];
-      const $ = cheerio.load(iconv.decode(html.data, "UTF-8"));
-      const $bodyList = $(
-        "div.js-profile-editable-replace > div.clearfix.d-flex.d-md-block.flex-items-center.mb-4.mb-md-0 > div.vcard-names-container.float-left.js-profile-editable-names.col-12.py-3.js-sticky.js-user-profile-sticky-fields > h1"
-      );
-      $bodyList.each(function (i: any, elem: Element): any {
-        console.log("find : ", $(elem).html());
-        list[i] = {
-          name: $(elem).find("span.p-name.vcard-fullname.d-block.overflow-hidden").text(),
-          nickname: $(elem).find("span.p-nickname").text()
-        };
-      });
-
-      const data = list.filter((n) => n.name);
-      console.log("DATA : ", data);
-      resolve(data);
-    });
+          resolve(table);
+        }
+    ).catch((err:Error) => {reject(err)});
   });
 }
 
 export = {
-  crawlAll,
-  crawlTest
+  crawlDietAll
 };
