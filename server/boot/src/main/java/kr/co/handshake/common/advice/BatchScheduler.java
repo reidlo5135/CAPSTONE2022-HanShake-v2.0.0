@@ -25,32 +25,32 @@ public class BatchScheduler {
     private final Job job;
     private final JobLauncher jobLauncher;
 
-    @Scheduled(fixedDelay = 30000)
-    private void startJob() {
-        try {
-            Map<String, JobParameter> jobParameterMap = new HashMap<>();
-
-            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date time = new Date();
-
-            String time1 = format1.format(time);
-
-            jobParameterMap.put("requestDate", new JobParameter(time1));
-            JobParameters parameters = new JobParameters(jobParameterMap);
-            JobExecution jobExecution = jobLauncher.run(job, parameters);
-
-            while (jobExecution.isRunning()) {
-                log.info("isRunning.....");
-            }
-
-        } catch (JobExecutionAlreadyRunningException e) {
-            e.printStackTrace();
-        } catch (JobRestartException e) {
-            e.printStackTrace();
-        } catch (JobInstanceAlreadyCompleteException e) {
-            e.printStackTrace();
-        } catch (JobParametersInvalidException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Scheduled(fixedDelay = 30000)
+//    private void startJob() {
+//        try {
+//            Map<String, JobParameter> jobParameterMap = new HashMap<>();
+//
+//            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            Date time = new Date();
+//
+//            String time1 = format1.format(time);
+//
+//            jobParameterMap.put("requestDate", new JobParameter(time1));
+//            JobParameters parameters = new JobParameters(jobParameterMap);
+//            JobExecution jobExecution = jobLauncher.run(job, parameters);
+//
+//            while (jobExecution.isRunning()) {
+//                log.info("isRunning.....");
+//            }
+//
+//        } catch (JobExecutionAlreadyRunningException e) {
+//            e.printStackTrace();
+//        } catch (JobRestartException e) {
+//            e.printStackTrace();
+//        } catch (JobInstanceAlreadyCompleteException e) {
+//            e.printStackTrace();
+//        } catch (JobParametersInvalidException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
