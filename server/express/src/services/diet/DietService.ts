@@ -1,73 +1,63 @@
-import axios from "axios";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cheerio = require("cheerio");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cheerioTableParser = require("cheerio-tableparser");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconv = require("iconv-lite");
+import { ElementHandle } from "puppeteer-core";
+import crawlService from "../crawling/CrawlService";
 
-// eslint-disable-next-line consistent-return
-const getHtml = async (url: string) => {
-  console.log("GetHTML URL : ", url);
-  try {
-    return await axios({
-      url,
-      method: "GET",
-      responseType: "arraybuffer",
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+const URL = "https://www.daelim.ac.kr/cms/FrCon/index.do?MENU_ID=1470";
+const SELECTOR =
+  "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody";
 
-function crawlAll(): Promise<any> {
-  return new Promise<any>((resolve, reject) => {
-    getHtml("https://www.daelim.ac.kr/cms/FrCon/index.do?MENU_ID=1470").then(
-      (html: any) => {
-        const list: any[] = [];
-        const $ = cheerio.load(iconv.decode(html.data, "UTF-8"));
-        const $bodyList = $(
-          "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody"
-        );
-        $bodyList.each(function (i: any, elem: Element): any {
-          console.log("find : ", $(elem).html());
-          list[i] = {
-            corner: $(elem).find("tr > #text").text(),
-          };
-        });
+function crawlDietAll(): Promise<any> {
+  // eslint-disable-next-line no-async-promise-executor
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+        await crawlService
+            .commonCrawl(URL, SELECTOR)
+            .then(async (response: ElementHandle) => {
+                const th = await response.evaluate(() =>
+                    Array.from(
+                        document.querySelectorAll(
+                            "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody > tr"
+                        ),
+                        (row) =>
+                            Array.from(
+                                row.querySelectorAll("th"),
+                                (cell) => cell.textContent
+                            )
+                    )
+                );
 
-        const data = list.filter((n) => n.corner);
-        console.log("DATA : ", data);
-        resolve(data);
-      }
-    );
-  });
-}
+                const td = await response.evaluate(() =>
+                    Array.from(
+                        document.querySelectorAll(
+                            "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody > tr"
+                        ),
+                        (row) =>
+                            Array.from(
+                                row.querySelectorAll("td"),
+                                (cell) => cell.textContent
+                            )
+                    )
+                );
 
-function crawlTest(): Promise<any> {
-  return new Promise<any>((resolve, reject) => {
-    getHtml("https://github.com/reidlo5135").then((html: any) => {
-      const list: any[] = [];
-      const $ = cheerio.load(iconv.decode(html.data, "UTF-8"));
-      const $bodyList = $(
-        "div.js-profile-editable-replace > div.clearfix.d-flex.d-md-block.flex-items-center.mb-4.mb-md-0 > div.vcard-names-container.float-left.js-profile-editable-names.col-12.py-3.js-sticky.js-user-profile-sticky-fields > h1"
-      );
-      $bodyList.each(function (i: any, elem: Element): any {
-        console.log("find : ", $(elem).html());
-        list[i] = {
-          name: $(elem).find("span.p-name.vcard-fullname.d-block.overflow-hidden").text(),
-          nickname: $(elem).find("span.p-nickname").text()
-        };
-      });
-
-      const data = list.filter((n) => n.name);
-      console.log("DATA : ", data);
-      resolve(data);
-    });
+                let result = new Map<string, any[]>();
+                for(let i=0;i<td.length;i++) {
+                    result.set(th[i].toString(), td[i]);
+                }
+                for(const key of result.keys()) {
+                    console.log(`KEY : ${key}`);
+                    console.log(`result : ${result.get(key)}`);
+                }
+                const json = JSON.stringify(Object.fromEntries(result));
+                resolve(JSON.parse(json));
+            })
+            .catch((err: Error) => {
+                reject(err);
+            });
+    } catch (e) {
+        reject(e);
+    }
   });
 }
 
 export = {
-  crawlAll,
-  crawlTest
+  crawlDietAll,
 };

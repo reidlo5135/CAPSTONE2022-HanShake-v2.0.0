@@ -3,7 +3,6 @@ import controller from "./DietController";
 
 const router = express.Router();
 
-router.get("/", controller.findAll);
-router.get("/test", controller.findTest);
+router.get("/", controller.findDietAll);
 
 export = router;
