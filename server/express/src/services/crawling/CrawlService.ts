@@ -20,7 +20,6 @@ async function commonCrawl(url: string, selector: string) {
   });
   const page = await browser.newPage();
   await page.goto(url);
-  // eslint-disable-next-line no-return-await
   return await page.$(selector);
 }
 

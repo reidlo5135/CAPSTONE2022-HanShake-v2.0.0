@@ -6,14 +6,14 @@ const findDietAll = async (req: Request, res: Response) => {
     (resolve: Response) => {
       console.log(
         "DietController findPuppe promise stringify : ",
-        JSON.stringify(resolve)
+        resolve
       );
       res.status(200).send({ code: 0, message: "success", data: resolve });
     },
     (reject: Error) => {
       console.log(
         "DietController findPuppe promise reject : ",
-        JSON.stringify(reject)
+        reject
       );
       res.send({ code: -1, message: "failed", error: reject });
     }
