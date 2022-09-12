@@ -8,7 +8,7 @@ const findDietAll = async (req: Request, res: Response) => {
         "DietController findPuppe promise stringify : ",
         resolve
       );
-      res.status(200).send({ code: 0, message: "success", data: resolve });
+      res.status(200).send({ resolve });
     },
     (reject: Error) => {
       console.log(

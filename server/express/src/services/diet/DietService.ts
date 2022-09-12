@@ -46,7 +46,8 @@ function crawlDietAll(): Promise<any> {
                     console.log(`KEY : ${key}`);
                     console.log(`result : ${result.get(key)}`);
                 }
-                resolve(result);
+                const json = JSON.stringify(Object.fromEntries(result));
+                resolve(JSON.parse(json));
             })
             .catch((err: Error) => {
                 reject(err);
