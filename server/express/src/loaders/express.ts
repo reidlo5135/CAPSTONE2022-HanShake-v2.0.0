@@ -12,7 +12,7 @@ export default async ({ app }: { app: express.Application }) => {
   app.use(cookieParser());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
-  app.use(cors());
+  app.use(cors({ origin: "http://localhost:8080/" }));
   app.use("/v2/api/diet/", DietRouter);
 
   return app;
