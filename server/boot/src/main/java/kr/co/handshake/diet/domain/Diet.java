@@ -19,12 +19,13 @@ public class Diet extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String corner;
 
     @Column(nullable = false)
     private String menu;
 
-    @Column(nullable = false, unique = true)
-    private String day;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private DayEnum day;
 }
