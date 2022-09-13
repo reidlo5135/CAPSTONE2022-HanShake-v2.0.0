@@ -1,13 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const puppeteer = require("puppeteer-core");
+const URL = "https://www.daelim.ac.kr/cms/FrCon/index.do?MENU_ID=";
 
-async function commonCrawl(url: string, selector: string) {
-  console.log(
-    "CrawlService commonCrawl url : ",
-    url,
-    ", selector : ",
-    selector
-  );
+async function commonCrawl(menu_id: any, selector: string) {
+  console.log("CrawlService commonCrawl menu_id : ", menu_id);
+  console.log("CrawlService commonCrawl selector : ", selector);
+
   const browser = await puppeteer.launch({
     product: "chrome",
     executablePath:
@@ -19,7 +17,7 @@ async function commonCrawl(url: string, selector: string) {
     },
   });
   const page = await browser.newPage();
-  await page.goto(url);
+  await page.goto(URL + menu_id);
   return await page.$(selector);
 }
 

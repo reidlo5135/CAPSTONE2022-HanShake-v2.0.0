@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ * @author reidlo
+ * 2022-09-13
+ * @version 2.0.0
+ */
 @Api(tags = {"1. Diet"})
 @Controller
 @RequiredArgsConstructor

@@ -14,6 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author reidlo
+ * 2022-09-13
+ * @version 2.0.0
+ */
 @Service
 @RequiredArgsConstructor
 public class DietService {
@@ -23,6 +28,7 @@ public class DietService {
 
     private static final String ALL_DIET_URL = "http://localhost:5000/v2/api/diet/";
 
+    @Transactional(readOnly = true)
     public SingleResult<List> findAllDiet() {
         return responseService.getSingleResult(dietRepository.findAll());
     }
