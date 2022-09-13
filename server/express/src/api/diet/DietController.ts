@@ -15,7 +15,7 @@ const findDietAll = async (req: Request, res: Response) => {
         "DietController findPuppe promise reject : ",
         reject
       );
-      res.send({ code: -1, message: "failed", error: reject });
+      res.send({ code: -1, message: "failed", error: JSON.stringify(reject) });
     }
   );
 };
