@@ -4,13 +4,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const {promiseWrapper} = require("../../middlewares/AsyncWrapper");
+
 const MENU_ID: any = process.env.DIET_MENU_ID || 1470;
 const SELECTOR: string =
   "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody";
 
 function crawlDietAll(): Promise<any> {
   // eslint-disable-next-line no-async-promise-executor
-  return new Promise<any>(async (resolve, reject) => {
+  return new Promise<any>(promiseWrapper(async (resolve: any, reject: any) => {
       await crawlService
           .commonCrawl(MENU_ID, SELECTOR)
           .then(async (response: ElementHandle) => {
@@ -54,7 +56,7 @@ function crawlDietAll(): Promise<any> {
           .catch((err: Error) => {
               reject(err);
           });
-  });
+  }));
 }
 
 export = {
