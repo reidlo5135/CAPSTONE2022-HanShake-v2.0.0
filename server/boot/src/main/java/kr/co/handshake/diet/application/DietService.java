@@ -3,18 +3,17 @@ package kr.co.handshake.diet.application;
 import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.SingleResult;
+import kr.co.handshake.common.exception.RestCommunicationException;
 import kr.co.handshake.diet.domain.DayEnum;
 import kr.co.handshake.diet.domain.DietRepository;
 import kr.co.handshake.diet.dto.DietResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
-@Log4j2
 @Service
 @RequiredArgsConstructor
 public class DietService {
@@ -32,6 +31,7 @@ public class DietService {
     public void requestAndSaveAllDiet() {
         try {
             Map<String, List<String>> responseMap = restFactoryService.request(ALL_DIET_URL);
+            if(responseMap.isEmpty()) throw new RestCommunicationException();
             for(Map.Entry<String, List<String>> elem : responseMap.entrySet()) {
                 List<String> menuList = elem.getValue();
                 for(int i=0;i< menuList.size();i++) {
