@@ -6,6 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author reidlo
+ * 2022-09-13
+ * @version 2.0.0
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
