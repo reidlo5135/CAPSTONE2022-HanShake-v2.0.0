@@ -28,6 +28,7 @@ public class DietService {
 
     private static final String ALL_DIET_URL = "http://localhost:5000/v2/api/diet/";
 
+    @Transactional(readOnly = true)
     public SingleResult<List> findAllDiet() {
         return responseService.getSingleResult(dietRepository.findAll());
     }
