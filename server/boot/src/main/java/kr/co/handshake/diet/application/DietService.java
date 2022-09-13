@@ -14,6 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author reidlo
+ * 2022-09-13
+ * @version 2.0.0
+ */
 @Service
 @RequiredArgsConstructor
 public class DietService {
