@@ -17,6 +17,7 @@ async function commonCrawl(menu_id: any, selector: string) {
     },
   });
   const page = await browser.newPage();
+  console.log("URL : ", URL + menu_id);
   await page.goto(URL + menu_id);
   return await page.$(selector);
 }
