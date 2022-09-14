@@ -1,0 +1,84 @@
+.contents{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-contents{
+    position: relative;
+    right:11%;
+    z-index: 6;
+}
+
+.right-contents{
+    position: relative;
+    right: 10%;
+    width: 50%;
+    z-index: 5;
+}
+
+.campus-cam{
+    float: right;
+    width: 500px;
+    height: 500px;
+    background-color: #eeeeee;
+}
+
+.campus-slide{
+    position: relative;
+    left: 100%;
+    background-color: #eeeeee;
+
+}
+
+.campus-slide .slick-slider{
+    width: 500px;
+    background-color: #3D84FC;
+    color: #eeeeee;
+}
+
+.campus-img > img{
+    margin-top: 10%;
+
+}
+
+.campus-slide .slick-slider{
+    width: 500px;
+    background-color: #3D84FC;
+    color: #eeeeee;
+}
+
+.campus-img > img{
+    margin-top: 10%;
+}
+
+.campus-img >p{
+text-decoration: none;
+}
+
+.campus-slide .slick-slider{
+    left:0
+}
+
+#webcam-container {
+    text-align: center;
+}
+#webcam-container img {
+    margin-top: 150px;
+    margin-left: 500px;
+}
+
+
+.campus-img >p{
+text-decoration: none;
+}
+
+#webcam-container canvas {
+    margin-left : 500px;
+}
+
+.tuto-desc{
+    width: 300px;
+    padding-left: 500px;
+}
