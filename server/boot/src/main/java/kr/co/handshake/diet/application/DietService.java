@@ -5,6 +5,7 @@ import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.SingleResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
 import kr.co.handshake.diet.domain.DayEnum;
+import kr.co.handshake.diet.domain.Diet;
 import kr.co.handshake.diet.domain.DietRepository;
 import kr.co.handshake.diet.dto.DietResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class DietService {
     private static final String ALL_DIET_URL = "http://localhost:5000/v2/api/diet/";
 
     @Transactional(readOnly = true)
-    public SingleResult<List> findAllDiet() {
+    public SingleResult<List<Diet>> findAllDiet() {
         return responseService.getSingleResult(dietRepository.findAll());
     }
 
@@ -40,7 +41,7 @@ public class DietService {
             if(responseMap.isEmpty()) throw new RestCommunicationException();
             for(Map.Entry<String, List<String>> elem : responseMap.entrySet()) {
                 List<String> menuList = elem.getValue();
-                for(int i=0;i< menuList.size();i++) {
+                for(int i=0;i<menuList.size();i++) {
                     DietResponseDto dietResponseDto = new DietResponseDto(elem.getKey(), menuList.get(i), DayEnum.values()[i]);
                     dietRepository.save(dietResponseDto.toEntity());
                 }
