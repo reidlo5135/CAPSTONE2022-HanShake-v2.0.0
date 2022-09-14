@@ -46,12 +46,7 @@ function crawlDietAll(): Promise<any> {
               for(let i=0;i<td.length;i++) {
                   result.set(th[i].toString(), td[i]);
               }
-              for(const key of result.keys()) {
-                  console.log(`KEY : ${key}`);
-                  console.log(`result : ${result.get(key)}`);
-              }
-              const json = JSON.stringify(Object.fromEntries(result));
-              resolve(JSON.parse(json));
+              resolve(JSON.parse(JSON.stringify(Object.fromEntries(result))));
           })
           .catch((err: Error) => {
               reject(err);
