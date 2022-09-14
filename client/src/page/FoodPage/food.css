@@ -1,0 +1,136 @@
+.f-logo{
+    margin:3%;
+    text-align: center;
+}
+
+.food-figure1{
+    position: relative;
+    width: 130px;
+    height: 30px;
+    left: 68%;
+    top: 30px;
+    background: #3D84FC;
+}
+
+.food-figure2{
+    position: relative;
+    width: 130px;
+    height: 30px;
+    left: 65%;
+    top: 50px;
+    background: #3D84FC;
+    transform: rotate(90deg);
+    z-index: 6;
+}
+
+.food-figure3{
+    position: relative;
+    width: 130px;
+    height: 30px;
+    left: 1771px;
+    top: 120px;
+    background: #3D84FC;
+    transform: rotate(-90deg);
+}
+
+.food-figure4{
+    position: relative;
+    width: 130px;
+    height: 30px;
+    left: 1700px;
+    top: 140px;
+    background: #3D84FC;
+    transform: rotate(-180deg);
+}
+
+.food-tit{
+    position: absolute;
+    background-color: #eeeeee;
+    padding: 3% 5% 3% 5%;
+    left: 76%;
+    top: 8%;
+}
+
+.f-contents{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.f-left-contents{
+    position: relative;
+    left: 18%;
+    z-index: 6;
+}
+
+.f-right-contents{
+    position: relative;
+    right: 5%;
+    width: 50%;
+    z-index: 5;
+}
+
+.f-container {
+    margin-top: 19%;
+    margin-left: 8%;
+}
+
+.food-title{
+    width: 750px;
+    margin-bottom: 3%;
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+    color: #3D84FC;
+}
+
+table {
+    width: 730px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+    padding: 15px;
+    background-color: rgba(255,255,255,0.2);
+    color: black;
+    border: solid 1px #eeeeee;
+}
+
+th {
+    text-align: left;
+}
+
+thead th{
+    background-color: #3D84FC;
+}
+
+tbody tr:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+tbody td{
+    position: relative;
+}
+
+tbody td::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255,255,255,0.2);
+    z-index: -1;
+}
+
+.slick-slider{
+    left: -150px;
+    width: 850px;
+    background-color: #ffffff;
+    height: 500px;
+}

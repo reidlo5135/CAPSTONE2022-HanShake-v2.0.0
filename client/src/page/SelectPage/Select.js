@@ -1,10 +1,11 @@
-
 import intro from '../../asset/intro_campus.png'
 import monthCalandar from '../../asset/month_calandar.png'
 import todayMeal from '../../asset/today_meal.png'
 import * as tmImage from '@teachablemachine/image';
 import {useEffect} from 'react';
 import Spin from '../../asset/spin.gif'
+import './select.css'
+import { Link } from "react-router-dom";
 
 const URL = "https://teachablemachine.withgoogle.com/models/riXpFHlAu/";
 
@@ -106,30 +107,30 @@ export default function Select () {
     
     return (
         <>
-          <div style ={{width : "100vw", height : "100vh"}}>
-         
-            <div style={{display : "flex",width : "100vw", height : "100vh", justifyContent : "space-around", alignItems : "center"}}>
-                <div style={{width : "50px", height : "10px"}}></div>
-                <div style={{ display : "grid", width : "40vw", height : "80vh", justifyItems : "center", alignItems : "center"}}>
-                    <img style ={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px", borderRadius : "48px", gridColumnStart:"1" , gridColumnEnd:"2",gridRowStart:"1",gridRowEnd:"2" }} src={intro} width = "320px"/>
-                    <img style ={{ boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px", borderRadius : "48px",gridColumnStart:"2" , gridColumnEnd:"3",gridRowStart:"1",gridRowEnd:"2" }} src={todayMeal} width = "320px"/>
-                    <img style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px", borderRadius : "48px",}} src={monthCalandar} width = "320px"/>
-                    <img style = {{boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px", borderRadius : "48px",}} src={intro} width = "320px"/>
-        
+          <div className='select'>
+            <div className='select-content'>
+                <div className='select-block'>
+                  <Link className="block1 block" to="/campus">
+                    <img src={intro}/>
+                  </Link>
+                  <Link className="block2 block" to="/food">
+                    <img src={todayMeal}/>
+                  </Link>
+                  <Link className="block3 block" to="/calender">
+                    <img src={monthCalandar}/>
+                  </Link>
+                  <Link className="block4 block" to="/calender">
+                    <img src={intro}/>
+                  </Link>
                 </div>
-             <div style={{  display : "flex" , justifyContent : "center", alignItems : "center",width : "40vw", height : "80vh"}}>
-                <div id="webcam-container">
-                    <img src={Spin}/>
+                <div className="webcam">
+                  <div id="webcam-container">
+                      <img src={Spin}/>
+                  </div>
+                  {/* <div id="label-container"></div> */}
                 </div>
-                {/* <div id="label-container"></div> */}
-             </div>
-             <div style={{width : "50px", height : "10px"}}></div>
-
             </div>
-
-            </div>
-            
-            
+          </div>   
         </>
     )
 

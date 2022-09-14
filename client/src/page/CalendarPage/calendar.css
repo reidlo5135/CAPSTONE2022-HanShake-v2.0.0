@@ -1,0 +1,120 @@
+
+
+.calendar-tit{
+    position: absolute;
+    background-color: #eeeeee;
+    padding: 3% 5% 3% 5%;
+    left: 76%;
+    top: 8%;
+}
+
+.C-contents{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.C-left-contents{
+    position: relative;
+    bottom: 100px;
+    left: 18%;
+    z-index: 6;
+}
+
+.C-left-contents .slick-slider{
+    position: relative;
+    top: 20%;
+}
+
+.C-right-contents{
+    position: relative;
+    top: 50px;
+    right: 5%;
+    width: 50%;
+    z-index: 5;
+}
+
+
+.c-left-contents{
+    position: relative;
+    left: 18%;
+    z-index: 6;
+}
+
+.month{
+   
+    font-size: 32px;
+    font-weight: bold;
+    color: #3D84FC;
+    margin-top:1%;
+}
+/*캘린더*/
+.c-container {
+    transform: translate(-50%, -50%);
+}
+
+.tc-table {
+	width: 800px;
+    margin-top: 75%;
+    margin-left: 154%;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.t-th,
+.t-td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: black;
+    border: solid 1px #eeeeee;
+}
+
+.t-th {
+	text-align: left;
+}
+
+.t-thead .t-th{
+	background-color: #3D84FC;
+}
+
+.t-tbody .t-tr:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+.t-tbody .t-td{
+    position: relative;
+}
+
+.t-tbody .t-td::before{
+    content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+	background-color: rgba(255,255,255,0.2);
+	z-index: -1;
+}
+
+.slick-slider{
+    left: -150px;
+    width: 900px;
+    background-color: #ffffff;
+    height: 600px;
+}
+
+.C-left-contents .slick-list{
+    height: 800px;
+}
+
+.C-left-contents .slick-dots{
+    bottom: -55px;
+}
+
+.cl-desc{
+    font-size: 8px;
+}
+

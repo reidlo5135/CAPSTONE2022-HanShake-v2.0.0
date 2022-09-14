@@ -9,7 +9,7 @@ body{
     top: 13px;
 }
 
-.Main{
+.main{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -17,7 +17,7 @@ body{
     align-items: "center";
 }
 
-.Main-Content{
+.main-Content{
     display: "flex";
     justify-content : "center" ;
     align-items: "center";

@@ -5,8 +5,8 @@ import './main.css';
 export default function Main() {
     return (
         <>
-        <div className="Main">
-            <div className="Main-Content">
+        <div className="main">
+            <div className="main-Content">
                 <div style={{marginTop : "150px", textAlign : "center"}}>
                     <img src={logo}/><br/>
                     <span className="subtext">수어로만나는대림대학교</span> <br/>
