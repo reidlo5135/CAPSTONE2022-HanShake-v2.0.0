@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {BrowserRouter,Route, Switch} from 'react-router-dom';
+import Main from "./page/MainPage/Main";
+import Select from "./page/SelectPage/Select";
+import {AnimatePresence} from "framer-motion";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AnimatePresence>
+        <BrowserRouter>
+         <Switch>
+             <Route exact path = '/' component={Main}/>
+             <Route exact path = '/select' component={Select}/>
+         </Switch>
+        </BrowserRouter>
+      </AnimatePresence>
     </div>
   );
 }
