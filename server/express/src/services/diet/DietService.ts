@@ -1,3 +1,8 @@
+/**
+ * @author reidlo
+ * @version 2.0.0
+ * 2022-09-15
+ */
 import { ElementHandle } from "puppeteer-core";
 import { BadRequestError } from "../../lib/BadRequestError";
 import crawlService from "../crawling/CrawlService";

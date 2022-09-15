@@ -1,3 +1,8 @@
+/**
+ * @author reidlo
+ * @version 2.0.0
+ * 2022-09-15
+ */
 import { ElementHandle } from "puppeteer-core";
 import { BadRequestError } from "../../lib/BadRequestError";
 import crawlService from "../crawling/CrawlService";
@@ -7,7 +12,6 @@ dotenv.config();
 
 const {promiseWrapper} = require("../../middlewares/AsyncWrapper");
 const MENU_ID: any = process.env.NOTICE_MENU_ID || 990;
-const CONTENTS_NO: any = process.env.NOTICE_CONTENTS_NO || 1;
 const SELECTOR: string =
     "#contents > article > div > div.lineList_ul > ul";
 
@@ -16,7 +20,7 @@ let result = new Map<string, any[]>();
 function crawlNoticeAll(): Promise<any> {
     return new Promise<any>(promiseWrapper(async (resolve: any, reject: any) => {
         await crawlService
-            .commonCrawl(MENU_ID+ "&CONTENTS_NO=1", SELECTOR)
+            .commonCrawl(MENU_ID + "&CONTENTS_NO=1", SELECTOR)
             .then(commonTargetCrawl)
             .then(async (response) => {
                 await crawlService
