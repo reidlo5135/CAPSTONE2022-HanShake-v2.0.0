@@ -1,6 +1,6 @@
+import { ElementHandle } from "puppeteer-core";
 import crawlService from "../crawling/CrawlService";
 import dotenv from 'dotenv';
-import {ElementHandle} from "puppeteer-core";
 
 dotenv.config();
 
@@ -63,8 +63,8 @@ function crawlNoticeAll(): Promise<any> {
                 }
                 resolve(JSON.parse(JSON.stringify(Object.fromEntries(result))));
             })
-            .catch((err: Error) => {
-                reject(err);
+            .catch(() => {
+                reject(new Error("Notice Crawling Failed"));
             });
     }))
 }

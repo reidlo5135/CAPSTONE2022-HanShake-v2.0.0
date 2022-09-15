@@ -48,8 +48,8 @@ function crawlDietAll(): Promise<any> {
               }
               resolve(JSON.parse(JSON.stringify(Object.fromEntries(result))));
           })
-          .catch((err: Error) => {
-              reject(err);
+          .catch(() => {
+              reject(new Error("Diet Crawling Failed"));
           });
   }));
 }
