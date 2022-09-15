@@ -1,11 +1,11 @@
 import { ElementHandle } from "puppeteer-core";
+import { BadRequestError } from "../../lib/BadRequestError";
 import crawlService from "../crawling/CrawlService";
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const {promiseWrapper} = require("../../middlewares/AsyncWrapper");
-
 const MENU_ID: any = process.env.DIET_MENU_ID || 1470;
 const SELECTOR: string =
   "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody";
@@ -48,12 +48,12 @@ function crawlDietAll(): Promise<any> {
               }
               resolve(JSON.parse(JSON.stringify(Object.fromEntries(result))));
           })
-          .catch(() => {
-              reject(new Error("Diet Crawling Failed"));
+          .catch((err: Error) => {
+              reject(new BadRequestError(err.message));
           });
   }));
 }
 
 export = {
-  crawlDietAll,
+  crawlDietAll
 };

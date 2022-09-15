@@ -1,11 +1,11 @@
 import { ElementHandle } from "puppeteer-core";
+import { BadRequestError } from "../../lib/BadRequestError";
 import crawlService from "../crawling/CrawlService";
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const {promiseWrapper} = require("../../middlewares/AsyncWrapper");
-
 const MENU_ID: any = process.env.NOTICE_MENU_ID || 990;
 const CONTENTS_NO: any = process.env.NOTICE_CONTENTS_NO || 1;
 const SELECTOR: string =
@@ -55,18 +55,31 @@ function crawlNoticeAll(): Promise<any> {
                   )
                 );
 
+                const href = await response.evaluate(() =>
+                    Array.from(
+                        document.querySelectorAll(
+                            "#contents > article > div > div.lineList_ul > ul > li"
+                        ),
+                        (row) =>
+                            Array.from(
+                                row.querySelectorAll("div.txtL > a"),
+                                (cell) => cell.getAttribute("href")
+                            )
+                    )
+                );
+
                 let arr: any[] = [];
                 let result = new Map<string, any[]>();
                 for (let i=0;i<number.length;i++) {
-                    arr = [category[i].toString(), title[i].toString()];
+                    arr = [category[i].toString(), title[i].toString(), "https://daelim.ac.kr" + href[i].toString()];
                     result.set(number[i].toString(), arr);
                 }
                 resolve(JSON.parse(JSON.stringify(Object.fromEntries(result))));
             })
-            .catch(() => {
-                reject(new Error("Notice Crawling Failed"));
+            .catch((err: Error) => {
+                reject(new BadRequestError(err.message));
             });
-    }))
+    }));
 }
 
 export = {

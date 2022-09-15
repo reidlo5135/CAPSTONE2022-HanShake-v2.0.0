@@ -23,5 +23,5 @@ async function commonCrawl(menu_id: any, selector: string) {
 }
 
 export = {
-  commonCrawl,
+  commonCrawl
 };
