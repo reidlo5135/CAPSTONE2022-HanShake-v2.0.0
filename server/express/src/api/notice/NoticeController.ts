@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import service from '../../services/notice/NoticeService';
+import service from '../../services/notice/scholar/ScholarNoticeService';
 
 const {asyncWrapper} = require("../../middlewares/AsyncWrapper");
 
-const findNoticeAll = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
-    service.crawlNoticeAll().then(
+const findScholarNoticeAll = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+    service.crawlScholarNoticeAll().then(
         (resolve: Response) => {
             console.log(
                 "NoticeController findNoticeAll promise resolved : ",
@@ -23,5 +23,5 @@ const findNoticeAll = asyncWrapper(async (req: Request, res: Response, next: Nex
 });
 
 export = {
-    findNoticeAll
+    findScholarNoticeAll
 }

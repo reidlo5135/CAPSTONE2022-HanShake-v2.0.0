@@ -3,6 +3,6 @@ import controller from './NoticeController';
 
 const router = express.Router();
 
-router.get("/", controller.findNoticeAll);
+router.get("/scholar", controller.findScholarNoticeAll);
 
 export = router;
