@@ -3,6 +3,7 @@
     margin-bottom: 5%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .left-contents{
@@ -13,7 +14,7 @@
 
 .right-contents{
     position: relative;
-    right: 10%;
+    /* right: 10%; */
     width: 50%;
     z-index: 5;
 }
@@ -74,9 +75,9 @@ text-decoration: none;
 text-decoration: none;
 }
 
-#webcam-container canvas {
+ /* #webcam-container canvas {
     margin-left : 500px;
-}
+} */
 
 .tuto-desc{
     width: 300px;

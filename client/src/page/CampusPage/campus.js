@@ -218,8 +218,8 @@ export default function Campus(){
                    
                     <div className='right-contents'>
                         <div id="webcam-container">
-                        <img src={Spin}/>
-                  </div>
+                            <img src={Spin}/>
+                        </div>
                     </div>
                 </div>
 
