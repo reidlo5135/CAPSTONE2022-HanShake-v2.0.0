@@ -124,17 +124,15 @@ async function commonTargetCrawl (response: ElementHandle) {
         )
     );
 
-    let arr: any[] = [];
+    let map = new Map<string, string>();
     for (let i=0;i<number.length;i++) {
-        arr = [
-            category[i].toString(),
-            title[i].toString(),
-            "https://daelim.ac.kr" + href[i].toString(),
-            writer[i].toString(),
-            date[i].toString(),
-            view[i].toString().split("조회 ")[1]
-        ];
-        result.set(number[i].toString(), arr);
+        map.set("category", category[i].toString());
+        map.set("title", title[i].toString());
+        map.set("url", "https://www.daelim.ac.kr" + href[i].toString());
+        map.set("writer", writer[i].toString());
+        map.set("regDate", date[i].toString());
+        map.set("views", view[i].toString().split("조회")[1]);
+        result.set(number[i].toString(), JSON.parse(JSON.stringify(Object.fromEntries(map))));
     }
     return result;
 }
