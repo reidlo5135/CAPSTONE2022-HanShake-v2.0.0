@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
+.top{
+  display: flex;
+
+ 
+}
+
+.cd-title{
+  font-weight: 700;
+  font-size: 48px;
+  color: #005AFF;
+  margin:3% 0 0 3%;
+  position: absolute;
+}
+
+.cd-desc{
+font-family: 'IBM Plex Sans KR', sans-serif;
+margin-top: 15%;
+font-size: 16px;
+}
+.cd-logo{
+  margin:3% auto;
+}
+
+
+.dc-fb1::before{
+content: "B1";
+color: #ffffff;
+width:37px;
+text-align: center;
+height:37px;
+position:absolute;
+left: 3%;
+border-radius:50px;
+background:#005AFF
+}
+
+.dc-f1::before{
+content: "1F";
+color: #ffffff;
+width:37px;
+text-align: center;
+height:37px;
+position:absolute;
+left: 3%;
+border-radius:50px;
+background:#005AFF
+}
+
+.dc-f2::before{
+  content: "2F";
+  color: #ffffff;
+  width:37px;
+  text-align: center;
+  height:37px;
+  position:absolute;
+  left: 3%;
+  border-radius:50px;
+  background:#005AFF
+}
+
+.dc-f3::before{
+  content: "3F";
+  color: #ffffff;
+  width:37px;
+  text-align: center;
+  height:37px;
+  position:absolute;
+  left: 3%;
+  border-radius:50px;
+  background:#005AFF
+}
+
+.dc-f4::before{
+  content: "4F";
+  color: #ffffff;
+  width:37px;
+  text-align: center;
+  height:37px;
+  position:absolute;
+  left: 3%;
+  border-radius:50px;
+  background:#005AFF
+}
+
+.dc-f5::before{
+  content: "5F";
+  color: #ffffff;
+  width:37px;
+  text-align: center;
+  height:37px;
+  position:absolute;
+  left: 3%;
+  border-radius:50px;
+  background:#005AFF
+}
+
+.dc-f6::before{
+  content: "6F";
+  color: #ffffff;
+  width:37px;
+  text-align: center;
+  height:37px;
+  position:absolute;
+  left: 3%;
+  border-radius:50px;
+  background:#005AFF
+}
+
+.dc-f7::before{
+  content: "7F";
+  color: #ffffff;
+  width:37px;
+  text-align: center;
+  height:37px;
+  position:absolute;
+  left: 3%;
+  border-radius:50px;
+  background:#005AFF
+}
+
+.cd-contents{
+display: flex;
+justify-content: space-around;
+align-items: center
+}
+
+.cd-left-contents{
+width: 50%;
+}
+
+.cd-right-content{
+  z-index: 5;
+ 
+}
+
+.cd-cam{
+    float: right;
+    width: 500px;
+    height: 500px;
+    background-color: #eeeeee;
+    margin: 10% 40% 0 0%;
+}
+
+.campus-img{
+  margin-top: 13%;
+}
+
+.campus-link{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 32px;
+  color: #ffffff;
+
+  float: right;
+  width: 500px;
+  height: 500px;
+  background-color: #eeeeee;
+  margin: 10% 40% 0 0%;
+}
+.campus-link{
+text-decoration: none;
+font-weight: bold;
+font-size: 32px;
+color: #ffffff;
+
+}

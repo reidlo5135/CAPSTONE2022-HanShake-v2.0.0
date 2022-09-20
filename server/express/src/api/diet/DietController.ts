@@ -7,14 +7,14 @@ const findDietAll = asyncWrapper(async (req: Request, res: Response, next: NextF
     service.crawlDietAll().then(
         (resolve: Response) => {
             console.log(
-                "DietController findPuppe promise stringify : ",
+                "DietController findDietAll promise resolved : ",
                 resolve
             );
             res.status(200).send({ resolve });
         },
         (reject: Error) => {
             console.log(
-                "DietController findPuppe promise reject : ",
+                "DietController findDietAll promise rejected : ",
                 reject
             );
             res.send({ code: -1, message: "failed", error: JSON.stringify(reject) });

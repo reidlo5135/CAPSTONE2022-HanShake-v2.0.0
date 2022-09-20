@@ -2,16 +2,15 @@ package kr.co.handshake.diet.presentation;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import kr.co.handshake.common.domain.SingleResult;
+import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.diet.application.DietService;
+import kr.co.handshake.diet.domain.Diet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 /**
  * @author reidlo
@@ -27,8 +26,8 @@ public class DietController {
 
     @GetMapping
     @ApiOperation(value = "전체 식단 조회", notes = "Select Diet All")
-    public ResponseEntity<SingleResult<List>> findAll() {
-        return ResponseEntity.ok().body(dietService.findAllDiet());
+    public ResponseEntity<ListResult<Diet>> findAll() {
+        return ResponseEntity.ok().body(dietService.findDietAll());
     }
 
     @PostMapping

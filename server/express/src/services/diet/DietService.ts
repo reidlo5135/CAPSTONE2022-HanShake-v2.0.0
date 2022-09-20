@@ -1,11 +1,16 @@
+/**
+ * @author reidlo
+ * @version 2.0.0
+ * 2022-09-15
+ */
 import { ElementHandle } from "puppeteer-core";
+import { BadRequestError } from "../../lib/BadRequestError";
 import crawlService from "../crawling/CrawlService";
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const {promiseWrapper} = require("../../middlewares/AsyncWrapper");
-
 const MENU_ID: any = process.env.DIET_MENU_ID || 1470;
 const SELECTOR: string =
   "#contents > article > div > div.menu_tb > div.lineTop_tbArea.tbScroll > table > tbody";
@@ -46,19 +51,14 @@ function crawlDietAll(): Promise<any> {
               for(let i=0;i<td.length;i++) {
                   result.set(th[i].toString(), td[i]);
               }
-              for(const key of result.keys()) {
-                  console.log(`KEY : ${key}`);
-                  console.log(`result : ${result.get(key)}`);
-              }
-              const json = JSON.stringify(Object.fromEntries(result));
-              resolve(JSON.parse(json));
+              resolve(JSON.parse(JSON.stringify(Object.fromEntries(result))));
           })
           .catch((err: Error) => {
-              reject(err);
+              reject(new BadRequestError(err.message));
           });
   }));
 }
 
 export = {
-  crawlDietAll,
+  crawlDietAll
 };
