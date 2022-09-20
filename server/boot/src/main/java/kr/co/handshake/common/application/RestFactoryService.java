@@ -13,8 +13,13 @@ public class RestFactoryService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public Map request(String url) {
-        Map<String, List<String>> responseMap = (Map<String, List<String>>) restTemplate.getForEntity(url, Map.class).getBody().get("resolve");
-        log.info("newMap : " + responseMap);
-        return responseMap;
+        try {
+            Map responseMap = (Map<String, List<String>>) restTemplate.getForEntity(url, Map.class).getBody().get("resolve");
+            log.info("newMap : " + responseMap);
+            return responseMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
