@@ -14,9 +14,11 @@ export default function Food(){
     const getFood = async () => {
         get('/v1/api/diet', {})
             .then((response) => {
-                console.log("Food.js getAllDiet response.data : ", response.data);
-                console.log("Food.js getAllDiet response.data.list : ", response.data.list);
-                setDetails(response.data.list);
+                if(response.data.code === 0) {
+                    console.log("Food.js getAllDiet response.data : ", response.data);
+                    console.log("Food.js getAllDiet response.data.list : ", response.data.list);
+                    setDetails(response.data.list);
+                }
             })
             .catch((err) => {
                 alert(err);
