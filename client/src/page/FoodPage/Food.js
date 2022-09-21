@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react';
+import {get} from "../../services/AxiosService";
 import "./food.css"
 import {motion} from "framer-motion"
 import AOS from "aos";
@@ -11,16 +12,15 @@ export default function Food(){
     const [details, setDetails] = useState([]);
 
     const getFood = async () => {
-        try {
-            const response = await fetch(`/api/food/all/`, {method: 'post'});
-            const body = await response.json();
-            console.log('campusDetail.js getGateDetails response : ', response);
-            console.log('campusDetail.js getGateDetails body : ', body);
-            setDetails(body);
-            console.log('campusDetail.js getGateDetails body : ', details);
-        } catch (error) {
-            console.error(error);
-        }
+        get('/v1/api/diet', {})
+            .then((response) => {
+                console.log("Food.js getAllDiet response.data : ", response.data);
+                console.log("Food.js getAllDiet response.data.list : ", response.data.list);
+                setDetails(response.data.list);
+            })
+            .catch((err) => {
+                alert(err);
+            });
     }
 
     useEffect(() => {
