@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {BrowserRouter,Route, Switch} from 'react-router-dom';
+import Main from "./page/MainPage/Main";
+import Select from "./page/SelectPage/Select";
+import Food from "./page/FoodPage/Food";
+import Calendar from "./page/CalendarPage/Calendar";
+import Campus from "./page/CampusPage/campus";
+import {AnimatePresence} from "framer-motion";
+import CampusDetail from './page/CampusPage/campusDetail';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AnimatePresence>
+        <BrowserRouter>
+         <Switch>
+             <Route exact path = '/' component={Main}/>
+             <Route exact path = '/select' component={Select}/>
+             <Route exact path = '/food' component={Food}/>
+             <Route exact path = '/calendar' component={Calendar}/>
+             <Route exact path = '/campus' component={Campus}/>
+             <Route exact path = '/campusdetail' component={CampusDetail}/>
+         </Switch>
+        </BrowserRouter>
+      </AnimatePresence>
     </div>
   );
 }
