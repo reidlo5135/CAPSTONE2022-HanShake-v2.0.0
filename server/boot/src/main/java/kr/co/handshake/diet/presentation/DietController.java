@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.diet.application.DietService;
-import kr.co.handshake.diet.domain.Diet;
+import kr.co.handshake.diet.dto.DietResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class DietController {
 
     @GetMapping
     @ApiOperation(value = "전체 식단 조회", notes = "Select Diet All")
-    public ResponseEntity<ListResult<Diet>> findAll() {
+    public ResponseEntity<ListResult<DietResponseDto>> findAll() {
         return ResponseEntity.ok().body(dietService.findDietAll());
     }
 
