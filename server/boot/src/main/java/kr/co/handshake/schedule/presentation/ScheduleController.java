@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.schedule.application.ScheduleService;
-import kr.co.handshake.schedule.domain.Schedule;
+import kr.co.handshake.schedule.dto.ScheduleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class ScheduleController {
 
     @GetMapping
     @ApiOperation(value = "전체 학사일정 조회", notes = "Select Schedule All")
-    public ResponseEntity<ListResult<Schedule>> findAll() {
+    public ResponseEntity<ListResult<ScheduleResponseDto>> findAll() {
         return ResponseEntity.ok().body(scheduleService.findAllSchedule());
     }
 

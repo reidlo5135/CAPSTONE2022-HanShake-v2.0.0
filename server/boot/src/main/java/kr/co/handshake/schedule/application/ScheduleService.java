@@ -4,14 +4,15 @@ import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
-import kr.co.handshake.schedule.domain.Schedule;
 import kr.co.handshake.schedule.domain.ScheduleRepository;
 import kr.co.handshake.schedule.dto.ScheduleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +24,9 @@ public class ScheduleService {
     private static final String ALL_SCHEDULE_URI = "http://localhost:5000/v2/api/schedule/";
 
     @Transactional(readOnly = true)
-    public ListResult<Schedule> findAllSchedule() {
-        return responseService.getListResult(scheduleRepository.findAll());
+    public ListResult<ScheduleResponseDto> findAllSchedule() {
+        List<ScheduleResponseDto> list = scheduleRepository.findAll().stream().map(ScheduleResponseDto::new).collect(Collectors.toList());
+        return responseService.getListResult(list);
     }
 
     @Transactional
