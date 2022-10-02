@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.notice.application.NoticeService;
-import kr.co.handshake.notice.domain.Notice;
+import kr.co.handshake.notice.dto.NoticeResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class NoticeController {
 
     @GetMapping
     @ApiOperation(value = "전체 공지사항 조회", notes = "Select Notice All")
-    public ResponseEntity<ListResult<Notice>> findAll() {
+    public ResponseEntity<ListResult<NoticeResponseDto>> findAll() {
         return ResponseEntity.ok().body(noticeService.findAllNotice());
     }
 
