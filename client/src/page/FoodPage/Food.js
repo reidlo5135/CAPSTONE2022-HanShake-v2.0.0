@@ -10,6 +10,7 @@ import Hlogo from "../../asset/handshake.png";
 
 export default function Food(){
     const [details, setDetails] = useState([]);
+    let json = {};
 
     const getFood = async () => {
         get('/v1/api/diet', {})
@@ -17,6 +18,8 @@ export default function Food(){
                 if(response.data.code === 0) {
                     console.log("Food.js getAllDiet response.data : ", response.data);
                     console.log("Food.js getAllDiet response.data.list : ", response.data.list);
+                    json = JSON.parse(JSON.stringify(response.data.list));
+                    console.log("Food.js getAllDiet responseJSON : ", json);
                     setDetails(response.data.list);
                 }
             })
@@ -52,6 +55,52 @@ export default function Food(){
             </div>
             <div className='f-contents'>
                 <div className='f-left-contents'>
+                    {/*<table>*/}
+                    {/*    <thead>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>코너</th>*/}
+                    {/*            <th>MON</th>*/}
+                    {/*            <th>TUE</th>*/}
+                    {/*            <th>WEN</th>*/}
+                    {/*            <th>THU</th>*/}
+                    {/*            <th>FRI</th>*/}
+                    {/*        </tr>*/}
+                    {/*    </thead>*/}
+                    {/*    <tbody>*/}
+                    {/*        {*/}
+                    {/*            details.map((diet) => (*/}
+                    {/*                <tr key={diet.index}>*/}
+                    {/*                    <th>{diet.corner}</th>*/}
+                    {/*                    <td>{diet.menu.toString()}</td>*/}
+                    {/*                </tr>*/}
+                    {/*            ))*/}
+                    {/*        }*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner2</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner3</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner4</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner5</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner6</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Daelim Cook</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>델리버스</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>PLUS+</th>*/}
+                    {/*        </tr>*/}
+                    {/*    </tbody>*/}
+                    {/*</table>*/}
                 <Slider {...settings}>
                     {details.map(detail =>{
                                     return (
@@ -68,15 +117,18 @@ export default function Food(){
                                                         <th>Corner4</th>
                                                         <th>Corner5</th>
                                                         <th>Corner6</th>
+                                                        <th>Daelim Cook</th>
                                                         <th>PLUS+</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                    {details.map((it)=> (
-                                                        <td>{detail.corner === undefined? "-"  : detail.corner1}</td>        
-                                                    ))}
-                                                    </tr>
+                                                    {
+                                                        details.map((diet) => (
+                                                            <tr key={diet.index}>
+                                                                <td>{detail.day === diet.day ? diet.menu : "-"}</td>
+                                                            </tr>
+                                                        ))
+                                                    }
                                                 </tbody>
                                         </table>
                                         </div>
