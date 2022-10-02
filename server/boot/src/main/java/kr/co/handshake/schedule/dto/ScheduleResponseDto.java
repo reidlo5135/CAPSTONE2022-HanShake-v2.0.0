@@ -13,6 +13,12 @@ public class ScheduleResponseDto {
     private String type;
     private String details;
 
+    public ScheduleResponseDto(Schedule schedule) {
+        this.indexDate = schedule.getIndexDate();
+        this.type = schedule.getType();
+        this.details = schedule.getDetails();
+    }
+
     public Schedule toEntity() {
         return Schedule.builder()
                 .indexDate(indexDate)

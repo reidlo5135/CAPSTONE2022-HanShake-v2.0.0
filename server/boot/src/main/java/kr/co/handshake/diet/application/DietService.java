@@ -5,7 +5,6 @@ import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
 import kr.co.handshake.diet.domain.DayEnum;
-import kr.co.handshake.diet.domain.Diet;
 import kr.co.handshake.diet.domain.DietRepository;
 import kr.co.handshake.diet.dto.DietResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author reidlo
@@ -30,8 +30,11 @@ public class DietService {
     private static final String ALL_DIET_URL = "http://localhost:5000/v2/api/diet/";
 
     @Transactional(readOnly = true)
-    public ListResult<Diet> findDietAll() {
-        return responseService.getListResult(dietRepository.findAll());
+    public ListResult<DietResponseDto> findDietAll() {
+        List<DietResponseDto> list = dietRepository.findAll().stream().map(DietResponseDto::new).collect(Collectors.toList());
+        if(list.isEmpty()) throw new NullPointerException();
+
+        return responseService.getListResult(list);
     }
 
     @Transactional
