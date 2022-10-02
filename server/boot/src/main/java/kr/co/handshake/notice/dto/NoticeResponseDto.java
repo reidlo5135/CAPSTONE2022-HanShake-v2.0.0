@@ -21,6 +21,17 @@ public class NoticeResponseDto {
     private String views;
     private NoticeEnum type;
 
+    public NoticeResponseDto(Notice notice) {
+        this.index = notice.getIndex();
+        this.category = notice.getCategory();
+        this.title = notice.getTitle();
+        this.url = notice.getUrl();
+        this.writer = notice.getWriter();
+        this.regDate = notice.getRegDate();
+        this.views = notice.getViews();
+        this.type = notice.getType();
+    }
+
     public Notice toEntity() {
         return Notice.builder()
                 .index(index)

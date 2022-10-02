@@ -4,7 +4,6 @@ import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
-import kr.co.handshake.notice.domain.Notice;
 import kr.co.handshake.notice.domain.NoticeEnum;
 import kr.co.handshake.notice.domain.NoticeRepository;
 import kr.co.handshake.notice.dto.NoticeResponseDto;
@@ -12,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +25,11 @@ public class NoticeService {
     private static final String ALL_NOTICE_URI = "http://localhost:5000/v2/api/notice/";
 
     @Transactional(readOnly = true)
-    public ListResult<Notice> findAllNotice() {
-        return responseService.getListResult(noticeRepository.findAll());
+    public ListResult<NoticeResponseDto> findAllNotice() {
+        List<NoticeResponseDto> list = noticeRepository.findAll().stream().map(NoticeResponseDto::new).collect(Collectors.toList());
+        if(list.isEmpty()) throw new NullPointerException();
+
+        return responseService.getListResult(list);
     }
 
     @Transactional

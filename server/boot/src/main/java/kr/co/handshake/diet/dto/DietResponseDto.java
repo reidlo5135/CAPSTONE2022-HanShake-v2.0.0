@@ -19,6 +19,12 @@ public class DietResponseDto {
     private String menu;
     private DayEnum day;
 
+    public DietResponseDto(Diet diet) {
+        this.corner = diet.getCorner();
+        this.menu = diet.getMenu();
+        this.day = diet.getDay();
+    }
+
     public Diet toEntity() {
         return Diet.builder()
                 .corner(corner)
