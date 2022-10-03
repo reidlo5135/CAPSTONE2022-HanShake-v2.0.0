@@ -10,16 +10,13 @@ import Hlogo from "../../asset/handshake.png";
 
 export default function Food(){
     const [details, setDetails] = useState([]);
-    let json = {};
 
-    const getFood = async () => {
+    const getFood = () => {
         get('/v1/api/diet', {})
             .then((response) => {
                 if(response.data.code === 0) {
                     console.log("Food.js getAllDiet response.data : ", response.data);
                     console.log("Food.js getAllDiet response.data.list : ", response.data.list);
-                    json = JSON.parse(JSON.stringify(response.data.list));
-                    console.log("Food.js getAllDiet responseJSON : ", json);
                     setDetails(response.data.list);
                 }
             })
@@ -105,7 +102,7 @@ export default function Food(){
                     {details.map(detail =>{
                                     return (
                                         <div className="f-container">
-                                            <div className='food-title' key={1}>
+                                            <div className='food-title' key={detail.index}>
                                                 {detail.day}
                                             </div>
                                             <table>
@@ -125,7 +122,7 @@ export default function Food(){
                                                     {
                                                         details.map((diet) => (
                                                             <tr key={diet.index}>
-                                                                <td>{detail.day === diet.day ? diet.menu : "-"}</td>
+                                                                <td>{diet.menu}</td>
                                                             </tr>
                                                         ))
                                                     }
