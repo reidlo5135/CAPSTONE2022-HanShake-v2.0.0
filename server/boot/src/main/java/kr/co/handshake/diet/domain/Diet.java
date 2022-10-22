@@ -1,6 +1,6 @@
 package kr.co.handshake.diet.domain;
 
-import kr.co.handshake.common.domain.BaseEntity;
+import kr.co.handshake.common.domain.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Diet extends BaseEntity {
+public class Diet extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
