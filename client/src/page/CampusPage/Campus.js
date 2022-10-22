@@ -152,8 +152,8 @@ export default function Campus(){
         try {
             const response = await fetch('/api/campus/gates', {method: 'post'});
             const body = await response.json();
-            console.log('campus.js getGateName response : ', response);
-            console.log('campus.js getGateName body : ', body);
+            console.log('Campus.js getGateName response : ', response);
+            console.log('Campus.js getGateName body : ', body);
             setGateName(body);
             console.log('gateName : ', gateName);
         } catch (error) {
