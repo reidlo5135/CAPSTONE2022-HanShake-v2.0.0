@@ -1,6 +1,6 @@
 package kr.co.handshake.facility.domain;
 
-import kr.co.handshake.common.domain.BaseEntity;
+import kr.co.handshake.common.domain.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Facility extends BaseEntity {
+public class Facility extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
