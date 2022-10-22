@@ -123,10 +123,10 @@ export default function CampusDetail(){
         try {
             const response = await fetch(`/api/campus/gates/details/${name}`, {method: 'post'});
             const body = await response.json();
-            console.log('campusDetail.js getGateDetails response : ', response);
-            console.log('campusDetail.js getGateDetails body : ', body);
+            console.log('CampusDetail.js getGateDetails response : ', response);
+            console.log('CampusDetail.js getGateDetails body : ', body);
             setDetails(body);
-            console.log('campusDetail.js getGateDetails body : ', details);
+            console.log('CampusDetail.js getGateDetails body : ', details);
         } catch (error) {
             console.error(error);
         }
