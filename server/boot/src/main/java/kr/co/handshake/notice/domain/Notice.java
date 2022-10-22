@@ -1,6 +1,6 @@
 package kr.co.handshake.notice.domain;
 
-import kr.co.handshake.common.domain.BaseEntity;
+import kr.co.handshake.common.domain.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "notice")
-public class Notice extends BaseEntity {
+public class Notice extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
