@@ -1,4 +1,4 @@
-package kr.co.handshake.notice.domain;
+package kr.co.handshake.notice;
 
 public enum NoticeEnum {
     And, Bid, Bachelor, Scholar

@@ -1,7 +1,7 @@
 package kr.co.handshake.notice.dto;
 
 import kr.co.handshake.notice.domain.Notice;
-import kr.co.handshake.notice.domain.NoticeEnum;
+import kr.co.handshake.notice.NoticeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
