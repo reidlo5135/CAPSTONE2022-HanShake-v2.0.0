@@ -1,6 +1,6 @@
 package kr.co.handshake.diet.dto;
 
-import kr.co.handshake.diet.domain.DayEnum;
+import kr.co.handshake.diet.DayEnum;
 import kr.co.handshake.diet.domain.Diet;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
