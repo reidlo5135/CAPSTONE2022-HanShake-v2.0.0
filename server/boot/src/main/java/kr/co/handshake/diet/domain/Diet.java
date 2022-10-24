@@ -1,6 +1,7 @@
 package kr.co.handshake.diet.domain;
 
 import kr.co.handshake.common.domain.BaseTimeEntity;
+import kr.co.handshake.diet.DayEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

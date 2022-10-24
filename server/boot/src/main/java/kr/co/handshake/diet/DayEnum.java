@@ -1,4 +1,4 @@
-package kr.co.handshake.diet.domain;
+package kr.co.handshake.diet;
 
 /**
  * @author reidlo
