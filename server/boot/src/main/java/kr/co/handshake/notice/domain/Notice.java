@@ -1,6 +1,7 @@
 package kr.co.handshake.notice.domain;
 
 import kr.co.handshake.common.domain.BaseTimeEntity;
+import kr.co.handshake.notice.NoticeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

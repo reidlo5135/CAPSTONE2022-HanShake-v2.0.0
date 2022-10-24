@@ -4,7 +4,7 @@ import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
-import kr.co.handshake.notice.domain.NoticeEnum;
+import kr.co.handshake.notice.NoticeEnum;
 import kr.co.handshake.notice.domain.NoticeRepository;
 import kr.co.handshake.notice.dto.NoticeResponseDto;
 import lombok.RequiredArgsConstructor;

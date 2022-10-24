@@ -4,7 +4,7 @@ import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.application.RestFactoryService;
 import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
-import kr.co.handshake.diet.domain.DayEnum;
+import kr.co.handshake.diet.DayEnum;
 import kr.co.handshake.diet.domain.DietRepository;
 import kr.co.handshake.diet.dto.DietResponseDto;
 import lombok.RequiredArgsConstructor;
