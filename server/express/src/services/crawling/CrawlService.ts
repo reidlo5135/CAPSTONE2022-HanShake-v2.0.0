@@ -1,3 +1,8 @@
+/**
+ * @author reidlo
+ * @version 2.0.0
+ * 2022-09-15
+ */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const puppeteer = require("puppeteer-core");
 const URL = "https://www.daelim.ac.kr/cms/FrCon/index.do?MENU_ID=";
@@ -17,10 +22,11 @@ async function commonCrawl(menu_id: any, selector: string) {
     },
   });
   const page = await browser.newPage();
+  console.log("URL : ", URL + menu_id);
   await page.goto(URL + menu_id);
   return await page.$(selector);
 }
 
 export = {
-  commonCrawl,
+  commonCrawl
 };

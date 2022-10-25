@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react';
+import {get} from "../../services/AxiosService";
 import "./food.css"
 import {motion} from "framer-motion"
 import AOS from "aos";
@@ -10,17 +11,18 @@ import Hlogo from "../../asset/handshake.png";
 export default function Food(){
     const [details, setDetails] = useState([]);
 
-    const getFood = async () => {
-        try {
-            const response = await fetch(`/api/food/all/`, {method: 'post'});
-            const body = await response.json();
-            console.log('campusDetail.js getGateDetails response : ', response);
-            console.log('campusDetail.js getGateDetails body : ', body);
-            setDetails(body);
-            console.log('campusDetail.js getGateDetails body : ', details);
-        } catch (error) {
-            console.error(error);
-        }
+    const getFood = () => {
+        get('/v1/api/diet', {})
+            .then((response) => {
+                if(response.data.code === 0) {
+                    console.log("Food.js getAllDiet response.data : ", response.data);
+                    console.log("Food.js getAllDiet response.data.list : ", response.data.list);
+                    setDetails(response.data.list);
+                }
+            })
+            .catch((err) => {
+                alert(err);
+            });
     }
 
     useEffect(() => {
@@ -50,11 +52,57 @@ export default function Food(){
             </div>
             <div className='f-contents'>
                 <div className='f-left-contents'>
+                    {/*<table>*/}
+                    {/*    <thead>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>코너</th>*/}
+                    {/*            <th>MON</th>*/}
+                    {/*            <th>TUE</th>*/}
+                    {/*            <th>WEN</th>*/}
+                    {/*            <th>THU</th>*/}
+                    {/*            <th>FRI</th>*/}
+                    {/*        </tr>*/}
+                    {/*    </thead>*/}
+                    {/*    <tbody>*/}
+                    {/*        {*/}
+                    {/*            details.map((diet) => (*/}
+                    {/*                <tr key={diet.index}>*/}
+                    {/*                    <th>{diet.corner}</th>*/}
+                    {/*                    <td>{diet.menu.toString()}</td>*/}
+                    {/*                </tr>*/}
+                    {/*            ))*/}
+                    {/*        }*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner2</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner3</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner4</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner5</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Corner6</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Daelim Cook</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>델리버스</th>*/}
+                    {/*        </tr>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>PLUS+</th>*/}
+                    {/*        </tr>*/}
+                    {/*    </tbody>*/}
+                    {/*</table>*/}
                 <Slider {...settings}>
                     {details.map(detail =>{
                                     return (
                                         <div className="f-container">
-                                            <div className='food-title' key={1}>
+                                            <div className='food-title' key={detail.index}>
                                                 {detail.day}
                                             </div>
                                             <table>
@@ -66,15 +114,18 @@ export default function Food(){
                                                         <th>Corner4</th>
                                                         <th>Corner5</th>
                                                         <th>Corner6</th>
+                                                        <th>Daelim Cook</th>
                                                         <th>PLUS+</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                    {details.map((it)=> (
-                                                        <td>{detail.corner === undefined? "-"  : detail.corner1}</td>        
-                                                    ))}
-                                                    </tr>
+                                                    {
+                                                        details.map((diet) => (
+                                                            <tr key={diet.index}>
+                                                                <td>{diet.menu}</td>
+                                                            </tr>
+                                                        ))
+                                                    }
                                                 </tbody>
                                         </table>
                                         </div>

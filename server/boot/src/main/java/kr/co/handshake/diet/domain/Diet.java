@@ -1,6 +1,7 @@
 package kr.co.handshake.diet.domain;
 
-import kr.co.handshake.common.domain.BaseEntity;
+import kr.co.handshake.common.domain.BaseTimeEntity;
+import kr.co.handshake.diet.DayEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,19 +19,19 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Diet extends BaseEntity {
+public class Diet extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "diet_corner", nullable = false)
     private String corner;
 
-    @Column(nullable = false)
+    @Column(name = "diet_menu", nullable = false)
     private String menu;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "diet_day", nullable = false)
     private DayEnum day;
 }

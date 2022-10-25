@@ -1,27 +1,27 @@
 import { Request, Response, NextFunction } from "express";
-import service from "../../services/diet/DietService";
+import facilityService from "../../services/facility/FacilityService";
 
 const {asyncWrapper} = require("../../middlewares/AsyncWrapper");
 
-const findDietAll = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
-    service.crawlDietAll().then(
+const findFacilityBuildingAll = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+    facilityService.crawlFacilityBuildingAll().then(
         (resolve: Response) => {
             console.log(
-                "DietController findDietAll promise resolved : ",
+                "FacilityController findFacilityAll promise resolved : ",
                 resolve
             );
             res.status(200).send({ resolve });
         },
         (reject: Error) => {
             console.log(
-                "DietController findDietAll promise rejected : ",
+                "FacilityController findFacilityAll promise rejected : ",
                 reject
             );
             res.send({ code: -1, message: "failed", error: JSON.stringify(reject) });
         }
-    );
+    )
 });
 
 export = {
-  findDietAll,
-};
+    findFacilityBuildingAll
+}
