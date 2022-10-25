@@ -9,19 +9,34 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Hlogo from "../../asset/handshake.png";
-
+import {get} from "../../services/AxiosService";
 
 export default function Calendar(){
+    const [data, setData] = useState([]);
     const [details, setDetails] = useState([]);
     var numbers = []
     for(var i = 1; i < 31; i++) {
 		numbers.push(i);
 }
 
+const getData = async () => {
+    get('/v1/api/schedule/')
+        .then((response) => {
+            setData(response.data);
+            console.log(data);
+        })
+        .catch((err) => {
+            console.error('err : ', JSON.stringify(err));
+            alert(err.response.data.msg);
+        });
+  }
+
+
+
   const location = useLocation();
   console.log("location : ",location);
   
-  const getSchedules = async () => {
+  /* const getSchedules = async () => {
     try {
         const response = await fetch('/api/schedule/all', {method: 'post'});
         const body = await response.json();
@@ -33,11 +48,12 @@ export default function Calendar(){
         console.error(error);
     }
 }
-
+ */
 useEffect(() => {
     AOS.init();
-    getSchedules();
+    /* getSchedules(); */
     console.log(details)
+    getData();
 }, []);
 
       const settings = {
