@@ -8,14 +8,12 @@ dotenv.config();
 const {promiseWrapper} = require("../../middlewares/AsyncWrapper");
 
 const MENU_ID: any = process.env.FACILITY_MENU_ID || 470;
-// const SELECTOR: string =
-//     "#contents > article > div.campusMap > ul > li.depth1 > div.depth2 > div#mCSB_3 > div#mCSB_3_container > ul > li > a";
 const SELECTOR: string =
     "div#mCSB_3_container > ul > li > a";
 
 let result = new Map<string, any[]>();
 
-function crawlFacilityBuildingAll(): Promise<any> {
+function crawlFacilityAll(): Promise<any> {
     return new Promise<any>(promiseWrapper(async (resolve: any, reject: any) => {
         await crawlService
             .commonCrawl(MENU_ID, SELECTOR)
@@ -30,7 +28,7 @@ function crawlFacilityBuildingAll(): Promise<any> {
 }
 
 async function commonTargetCrawl(response: ElementHandle) {
-    const name = await response.evaluate(() =>
+    const building = await response.evaluate(() =>
         Array.from(
             document.querySelectorAll(
                 "#mCSB_3_container > ul > li"
@@ -43,28 +41,39 @@ async function commonTargetCrawl(response: ElementHandle) {
         )
     );
 
-    const floor = await response.evaluate(() =>
+    const department = await response.evaluate(() =>
         Array.from(
             document.querySelectorAll(
-                "#mCSB_10_container > div.dropDown > ul > li"
+                "#mCSB_4_container > ul > li"
             ),
             (row) =>
                 Array.from(
-                    row.querySelectorAll("button"),
+                    row.querySelectorAll("a"),
                     (cell) => cell.textContent
                 )
         )
     );
 
-    let map = new Map<string, string>();
-    for(let i=0;name.length;i++) {
-        console.log("Facility Service name : ", name[i].toString());
-        console.log("Facility Service floor : ", floor[i].toString());
-    }
+    const welFare = await response.evaluate(() =>
+        Array.from(
+            document.querySelectorAll(
+                "#mCSB_5_container > ul > li"
+            ),
+            (row) =>
+                Array.from(
+                    row.querySelectorAll("a"),
+                    (cell) => cell.textContent
+                )
+        )
+    );
+
+    result.set("building", building);
+    result.set("department", department);
+    result.set("welfare", welFare);
 
     return result;
 }
 
 export = {
-    crawlFacilityBuildingAll
+    crawlFacilityAll
 }
