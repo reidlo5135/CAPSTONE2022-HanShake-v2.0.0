@@ -179,6 +179,7 @@ export default function Campus(){
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ ease: "easeOut", duration: 1 }}
+                className="campus-page"
             >
 
                 <div className='f-logo'>
@@ -224,11 +225,7 @@ export default function Campus(){
                 </div>
 
                 <div className="tuto-desc">
-                    <span>캠 화면을 통해 수어를 인식합니다</span><br/>
-                    <span>원하시는 위치로 넘겨보세요!</span>
-                    <button onClick={()=> {
-                        choice();
-                    }}>asdsad</button>
+                    <span>캠 화면을 통해 수어를 인식합니다. 원하시는 위치로 넘겨보세요!</span>
                 </div>
             </motion.div>
         </>

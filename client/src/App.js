@@ -5,9 +5,9 @@ import {AnimatePresence} from "framer-motion";
 import Main from "./page/MainPage/Main";
 import Select from "./page/SelectPage/Select";
 import Food from "./page/FoodPage/Food";
-import Calendar from "./page/CalendarPage/Calendar";
 import Campus from "./page/CampusPage/Campus";
 import CampusDetail from './page/CampusPage/CampusDetail';
+import Calendar from './page/CalendarPage/Calendar';
 
 function App() {
   return (
