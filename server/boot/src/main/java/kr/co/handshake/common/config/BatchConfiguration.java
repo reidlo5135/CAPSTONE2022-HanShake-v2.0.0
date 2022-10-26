@@ -64,7 +64,7 @@ public class BatchConfiguration {
 
     @Bean
     public ItemProcessor<Facility, String> processor() {
-        return Facility::getName;
+        return Facility::getBuilding;
     }
 
     private ItemWriter<String> writer() {
