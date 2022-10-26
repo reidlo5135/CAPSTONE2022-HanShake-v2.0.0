@@ -4,14 +4,14 @@ import moment from 'moment';
 import "./calendar.css"
 import Spin from '../../asset/spin.gif'
 import * as tmImage from '@teachablemachine/image';
-import {useRef} from 'react';
+import {get} from "../../services/AxiosService";
 
 const CalendarTest =()=>{
 
   const URL = "https://teachablemachine.withgoogle.com/models/DKLnLWS-K/"
 
   const [getMoment, setMoment]=useState(moment());
-
+  const [data, setData] = useState([]);
   const today = getMoment;
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
@@ -26,15 +26,15 @@ const CalendarTest =()=>{
     
     let interval = setInterval(()=> {
         let redbull = status;
-        console.log(looping)
+        /* console.log(looping) */
         if (temp !== redbull) {
-          console.log("이전값과 다릅니다.")
+          /* console.log("이전값과 다릅니다.") */
           looping = 0;
           temp = redbull;
         } else {
           if (looping === 3) {
             
-            console.log("선택값은 " +redbull)
+            /* console.log("선택값은 " +redbull) */
             if (redbull === 'Next') {
                 buildStatus++;
                 next();
@@ -49,10 +49,24 @@ const CalendarTest =()=>{
           
         }
       },1000)
+
+      const getData = async () => {
+        get('/v1/api/schedule/')
+            .then((response) => {
+                setData(response.data);
+                console.log(data);
+            })
+            .catch((err) => {
+                console.error('err : ', JSON.stringify(err));
+                alert(err.response.data.msg);
+            });
+      }
+    
     
     useEffect(()=> {
         console.log("dd")
         init();
+        getData();
       },[])
 
     async function init() {
@@ -191,8 +205,10 @@ const CalendarTest =()=>{
                     </table>
                 </div>
 
-                <div className="calendar-cam">
-                    <img src={Spin}/>
+                <div className='webcam-container'>
+                    <div className="calendar-cam">
+                        <img src={Spin}/>
+                    </div>
                 </div>
             </div>
         </div>
