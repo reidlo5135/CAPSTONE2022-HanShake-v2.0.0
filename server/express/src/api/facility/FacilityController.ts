@@ -3,8 +3,8 @@ import facilityService from "../../services/facility/FacilityService";
 
 const {asyncWrapper} = require("../../middlewares/AsyncWrapper");
 
-const findFacilityBuildingAll = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
-    facilityService.crawlFacilityBuildingAll().then(
+const findFacilityAll = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+    facilityService.crawlFacilityAll().then(
         (resolve: Response) => {
             console.log(
                 "FacilityController findFacilityAll promise resolved : ",
@@ -23,5 +23,5 @@ const findFacilityBuildingAll = asyncWrapper(async (req: Request, res: Response,
 });
 
 export = {
-    findFacilityBuildingAll
+    findFacilityAll
 }
