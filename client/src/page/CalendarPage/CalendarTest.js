@@ -154,16 +154,14 @@ const CalendarTest =()=>{
       return result;
     }
 
-    const sliderRef = useRef(null);
-
     function next() {
         console.log("next")
-        sliderRef.current.slickNext();
+        setMoment(getMoment.clone().subtract(1, 'month')) 
     }
     
     function back() {
         console.log("back")
-        sliderRef.current.slickPrev();
+        setMoment(getMoment.clone().add(1, 'month')) 
     }
 
   return (
@@ -171,11 +169,11 @@ const CalendarTest =()=>{
             <div className='C-contents'>
                 <div className='C-left-contents'>
                     <div className="control">
-                        <button onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }} >이전달</button>
+                       {/*  <button  >이전달</button> */}
                         <span className='month'>{today.format('YYYY 년 MM 월')}</span>
-                        <button onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }} >다음달</button>
+                       {/*  <button  >다음달</button> */}
                     </div>
-                    <table>
+                    <table className='tc-table'>
                         <thead className='c-thead'>
                         <tr>
                         {
