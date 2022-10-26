@@ -18,6 +18,12 @@ public class Facility extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String name;
+    @Column(nullable = false)
+    private String building;
+
+    @Column(nullable = false)
+    private String department;
+
+    @Column(nullable = false)
+    private String welfare;
 }
