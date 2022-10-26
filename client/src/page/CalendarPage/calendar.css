@@ -15,13 +15,13 @@
     justify-content: space-around;
 }
 
-
+/* 
 .C-left-contents{
     position: relative;
     bottom: 100px;
     left: 18%;
     z-index: 6;
-}
+} */
 
 .C-left-contents .slick-slider{
     position: relative;
@@ -105,16 +105,25 @@
     background-color: #ffffff;
     height: 600px;
 }
-
+/* 
 .C-left-contents .slick-list{
     height: 800px;
 }
 
 .C-left-contents .slick-dots{
     bottom: -55px;
-}
+} */
 
 .cl-desc{
     font-size: 8px;
 }
 
+.calendar-cam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 80vh;
+    padding-right: 25px;
+    padding-bottom: 5px;
+}
