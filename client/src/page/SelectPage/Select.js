@@ -116,10 +116,10 @@ export default function Select () {
                   <Link className="block2 block" to="/food">
                     <img src={todayMeal}/>
                   </Link>
-                  <Link className="block3 block" to="/calender">
+                  <Link className="block3 block" to="/calendar">
                     <img src={monthCalandar}/>
                   </Link>
-                  <Link className="block4 block" to="/calender">
+                  <Link className="block4 block" to="/">
                     <img src={intro}/>
                   </Link>
                 </div>
