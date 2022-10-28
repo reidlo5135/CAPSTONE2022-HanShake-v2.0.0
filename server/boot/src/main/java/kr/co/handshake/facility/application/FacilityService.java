@@ -2,6 +2,7 @@ package kr.co.handshake.facility.application;
 
 import kr.co.handshake.common.application.ResponseService;
 import kr.co.handshake.common.application.RestFactoryService;
+import kr.co.handshake.common.domain.ListResult;
 import kr.co.handshake.common.exception.RestCommunicationException;
 import kr.co.handshake.facility.domain.FacilityRepository;
 import kr.co.handshake.facility.dto.FacilityResponseDto;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -22,6 +24,14 @@ public class FacilityService {
     private final RestFactoryService restFactoryService;
 
     private static final String ALL_FACILITY_URL = "http://localhost:5000/v2/api/facility/";
+
+    @Transactional(readOnly = true)
+    public ListResult<FacilityResponseDto> findFacilityAll() {
+        List<FacilityResponseDto> list = facilityRepository.findAll().stream().map(FacilityResponseDto::new).collect(Collectors.toList());
+        if(list.isEmpty()) throw new NullPointerException();
+
+        return responseService.getListResult(list);
+    }
 
     @Transactional
     public void requestAndSaveAllFacility() {

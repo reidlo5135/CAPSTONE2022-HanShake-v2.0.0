@@ -13,6 +13,12 @@ public class FacilityResponseDto {
     private String department;
     private String welfare;
 
+    public FacilityResponseDto (Facility facility) {
+        this.building = facility.getBuilding();
+        this.department = facility.getDepartment();
+        this.welfare = facility.getWelfare();
+    }
+
     public Facility toEntity() {
         return Facility.builder()
                 .building(building)
