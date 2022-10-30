@@ -1,6 +1,8 @@
 package kr.co.handshake.facility.dto;
 
-import kr.co.handshake.facility.domain.Facility;
+import kr.co.handshake.facility.domain.building.Building;
+import kr.co.handshake.facility.domain.department.Department;
+import kr.co.handshake.facility.domain.welfare.Welfare;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,21 +11,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FacilityResponseDto {
-    private String building;
-    private String department;
-    private String welfare;
+    private String name;
 
-    public FacilityResponseDto (Facility facility) {
-        this.building = facility.getBuilding();
-        this.department = facility.getDepartment();
-        this.welfare = facility.getWelfare();
+    public Building toBuilding() {
+        return Building.builder()
+                .name(name)
+                .build();
     }
 
-    public Facility toEntity() {
-        return Facility.builder()
-                .building(building)
-                .department(department)
-                .welfare(welfare)
+    public Department toDepartment() {
+        return Department.builder()
+                .name(name)
+                .build();
+    }
+
+    public Welfare toWelfare() {
+        return Welfare.builder()
+                .name(name)
                 .build();
     }
 }

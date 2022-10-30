@@ -19,6 +19,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "diet")
 public class Diet extends BaseTimeEntity {
 
     @Id
