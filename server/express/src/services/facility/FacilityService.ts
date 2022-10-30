@@ -67,9 +67,23 @@ async function commonTargetCrawl(response: ElementHandle) {
         )
     );
 
-    result.set("building", building);
-    result.set("department", department);
-    result.set("welfare", welFare);
+    let buildingArr: string[] = [];
+    let departmentArr: string[] = [];
+    let welfareArr: string[] = [];
+
+    for(let i=0;i<building.length;i++) {
+        buildingArr.push(building[i].toString());
+    }
+    for(let j=0;j<department.length;j++) {
+        departmentArr.push(department[j].toString());
+    }
+    for(let k=0;k<welFare.length;k++) {
+        welfareArr.push(welFare[k].toString());
+    }
+
+    result.set("building", buildingArr);
+    result.set("department", departmentArr);
+    result.set("welfare", welfareArr);
 
     return result;
 }
