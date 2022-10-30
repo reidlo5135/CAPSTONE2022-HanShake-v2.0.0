@@ -11,13 +11,11 @@ const MENU_ID: any = process.env.FACILITY_MENU_ID || 470;
 const SELECTOR: string =
     "div#mCSB_3_container > ul > li > a";
 
-let result = new Map<string, any[]>();
-
-function crawlFacilityAll(): Promise<any> {
+function crawlBuilding(): Promise<any> {
     return new Promise<any>(promiseWrapper(async (resolve: any, reject: any) => {
         await crawlService
             .commonCrawl(MENU_ID, SELECTOR)
-            .then(commonTargetCrawl)
+            .then(buildingTargetCrawl)
             .then(async (response) => {
                 resolve(JSON.parse(JSON.stringify(Object.fromEntries(response))));
             })
@@ -27,7 +25,35 @@ function crawlFacilityAll(): Promise<any> {
     }));
 }
 
-async function commonTargetCrawl(response: ElementHandle) {
+function crawlDepartment(): Promise<any> {
+    return new Promise<any>(promiseWrapper(async (resolve: any, reject: any) => {
+        await crawlService
+            .commonCrawl(MENU_ID, SELECTOR)
+            .then(departmentTargetCrawl)
+            .then(async (response) => {
+                resolve(JSON.parse(JSON.stringify(Object.fromEntries(response))));
+            })
+            .catch((err: Error) => {
+                reject(new BadRequestError(err.message));
+            });
+    }));
+}
+
+function crawlWelfare(): Promise<any> {
+    return new Promise<any>(promiseWrapper(async (resolve: any, reject: any) => {
+        await crawlService
+            .commonCrawl(MENU_ID, SELECTOR)
+            .then(welfareTargetCrawl)
+            .then(async (response) => {
+                resolve(JSON.parse(JSON.stringify(Object.fromEntries(response))));
+            })
+            .catch((err: Error) => {
+                reject(new BadRequestError(err.message));
+            });
+    }));
+}
+
+async function buildingTargetCrawl(response: ElementHandle) {
     const building = await response.evaluate(() =>
         Array.from(
             document.querySelectorAll(
@@ -41,6 +67,18 @@ async function commonTargetCrawl(response: ElementHandle) {
         )
     );
 
+    let result = new Map<string, any[]>();
+    let buildingArr: string[] = [];
+
+    for(let i=0;i<building.length;i++) {
+        buildingArr.push(building[i].toString());
+    }
+    result.set("building", buildingArr);
+
+    return result;
+}
+
+async function departmentTargetCrawl(response: ElementHandle) {
     const department = await response.evaluate(() =>
         Array.from(
             document.querySelectorAll(
@@ -54,6 +92,18 @@ async function commonTargetCrawl(response: ElementHandle) {
         )
     );
 
+    let result = new Map<string, any[]>();
+    let departmentArr: string[] = [];
+
+    for(let j=0;j<department.length;j++) {
+        departmentArr.push(department[j].toString());
+    }
+    result.set("department", departmentArr);
+
+    return result;
+}
+
+async function welfareTargetCrawl(response: ElementHandle) {
     const welFare = await response.evaluate(() =>
         Array.from(
             document.querySelectorAll(
@@ -67,27 +117,20 @@ async function commonTargetCrawl(response: ElementHandle) {
         )
     );
 
-    let buildingArr: string[] = [];
-    let departmentArr: string[] = [];
+    let result = new Map<string, any[]>();
     let welfareArr: string[] = [];
 
-    for(let i=0;i<building.length;i++) {
-        buildingArr.push(building[i].toString());
-    }
-    for(let j=0;j<department.length;j++) {
-        departmentArr.push(department[j].toString());
-    }
     for(let k=0;k<welFare.length;k++) {
         welfareArr.push(welFare[k].toString());
     }
-
-    result.set("building", buildingArr);
-    result.set("department", departmentArr);
     result.set("welfare", welfareArr);
 
     return result;
 }
 
+
 export = {
-    crawlFacilityAll
+    crawlBuilding,
+    crawlDepartment,
+    crawlWelfare
 }
