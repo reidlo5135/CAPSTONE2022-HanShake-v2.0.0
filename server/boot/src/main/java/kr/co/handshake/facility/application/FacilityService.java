@@ -25,11 +25,11 @@ public class FacilityService {
     private final ResponseService responseService;
     private final RestFactoryService restFactoryService;
 
-    private static final String ALL_FACILITY_URL = "http://localhost:5000/v2/api/facility";
+    private static final String COMMON_FACILITY_URL = "http://localhost:5000/v2/api/facility";
 
     @Transactional
     public void requestAndSaveAllBuilding() {
-        Map<String, List<String>> responseMap = restFactoryService.request(ALL_FACILITY_URL + "/building");
+        Map<String, List<String>> responseMap = restFactoryService.request(COMMON_FACILITY_URL + "/building");
         if(responseMap == null || responseMap.isEmpty()) throw new RestCommunicationException();
         log.info("Facility Service requestAndSaveAllBuilding : " + responseMap);
         for(Map.Entry<String, List<String>> elem : responseMap.entrySet()) {
@@ -43,7 +43,7 @@ public class FacilityService {
 
     @Transactional
     public void requestAndSaveAllDepartment() {
-        Map<String, List<String>> responseMap = restFactoryService.request(ALL_FACILITY_URL + "/department");
+        Map<String, List<String>> responseMap = restFactoryService.request(COMMON_FACILITY_URL + "/department");
         if(responseMap == null || responseMap.isEmpty()) throw new RestCommunicationException();
         log.info("Facility Service requestAndSaveAllDepartment : " + responseMap);
         for(Map.Entry<String, List<String>> elem : responseMap.entrySet()) {
@@ -57,7 +57,7 @@ public class FacilityService {
 
     @Transactional
     public void requestAndSaveAllWelfare() {
-        Map<String, List<String>> responseMap = restFactoryService.request(ALL_FACILITY_URL + "/welfare");
+        Map<String, List<String>> responseMap = restFactoryService.request(COMMON_FACILITY_URL + "/welfare");
         if(responseMap == null || responseMap.isEmpty()) throw new RestCommunicationException();
         log.info("Facility Service requestAndSaveAllWelfare : " + responseMap);
         for(Map.Entry<String, List<String>> elem : responseMap.entrySet()) {
