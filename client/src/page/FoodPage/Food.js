@@ -11,12 +11,36 @@ import Hlogo from "../../asset/handshake.png";
 export default function Food(){
     const [details, setDetails] = useState([]);
 
+    const monconer = details.filter((detail) => detail.day === "MON");
+    const tueconer = details.filter((detail) => detail.day === "TUE");
+    const wedconer = details.filter((detail) => detail.day === "WED");
+    const thuconer = details.filter((detail) => detail.day === "THU");
+    const friconer = details.filter((detail) => detail.day === "FRI");
+
+    var foods = [monconer,tueconer,wedconer,thuconer,friconer];
+
+    const foodRender = () =>{
+        for (let i=0; i<foods.length; i++) {
+        foods.map((food) => ( 
+            <th>{food.menu}</th>
+        ))
+     }
+    }
+    ///이름을 배열로
+
+    const corner = {
+        "MON" : [],
+        "TUE" : [],
+        "WEN" : [],
+        "THU" : [],
+        "FRI" : [],
+    }
+
+
     const getFood = () => {
         get('/v1/api/diet', {})
             .then((response) => {
                 if(response.data.code === 0) {
-                    console.log("Food.js getAllDiet response.data : ", response.data);
-                    console.log("Food.js getAllDiet response.data.list : ", response.data.list);
                     setDetails(response.data.list);
                 }
             })
@@ -30,6 +54,17 @@ export default function Food(){
         getFood();
         console.log(details);
       }, []);
+
+    useEffect(()=> {
+        if (details.length != 0) {
+            for (let i=0; i<details.length; i++) {
+                let string = details[i].day;
+                corner[string].push(details[i]);
+             }
+             console.log(corner)
+        }
+        
+    },[details])
 
       const settings = {
         dots: true,
@@ -52,54 +87,8 @@ export default function Food(){
             </div>
             <div className='f-contents'>
                 <div className='f-left-contents'>
-                    {/*<table>*/}
-                    {/*    <thead>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>코너</th>*/}
-                    {/*            <th>MON</th>*/}
-                    {/*            <th>TUE</th>*/}
-                    {/*            <th>WEN</th>*/}
-                    {/*            <th>THU</th>*/}
-                    {/*            <th>FRI</th>*/}
-                    {/*        </tr>*/}
-                    {/*    </thead>*/}
-                    {/*    <tbody>*/}
-                    {/*        {*/}
-                    {/*            details.map((diet) => (*/}
-                    {/*                <tr key={diet.index}>*/}
-                    {/*                    <th>{diet.corner}</th>*/}
-                    {/*                    <td>{diet.menu.toString()}</td>*/}
-                    {/*                </tr>*/}
-                    {/*            ))*/}
-                    {/*        }*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Corner2</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Corner3</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Corner4</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Corner5</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Corner6</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Daelim Cook</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>델리버스</th>*/}
-                    {/*        </tr>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>PLUS+</th>*/}
-                    {/*        </tr>*/}
-                    {/*    </tbody>*/}
-                    {/*</table>*/}
                 <Slider {...settings}>
-                    {details.map(detail =>{
+                     {details.map(detail =>{
                                     return (
                                         <div className="f-container">
                                             <div className='food-title' key={detail.index}>
@@ -115,24 +104,21 @@ export default function Food(){
                                                         <th>Corner5</th>
                                                         <th>Corner6</th>
                                                         <th>Daelim Cook</th>
-                                                        <th>PLUS+</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {
-                                                        details.map((diet) => (
-                                                            <tr key={diet.index}>
-                                                                <td>{diet.menu}</td>
-                                                            </tr>
-                                                        ))
-                                                    }
+                                                <tr key={detail.index}>
+                                                    {foodRender()}
+                                                    </tr>
                                                 </tbody>
                                         </table>
                                         </div>
                                     )
                                 })
                             }
+
                 </Slider>
+
                 </div>
                 <div className='f-right-contents'>
                     <div className="campus-cam">
