@@ -10,32 +10,47 @@ import Hlogo from "../../asset/handshake.png";
 
 export default function Food(){
     const [details, setDetails] = useState([]);
+    
+    const [foods,setFoods] = useState([]);
 
-    const monconer = details.filter((detail) => detail.day === "MON");
-    const tueconer = details.filter((detail) => detail.day === "TUE");
-    const wedconer = details.filter((detail) => detail.day === "WED");
-    const thuconer = details.filter((detail) => detail.day === "THU");
-    const friconer = details.filter((detail) => detail.day === "FRI");
+    const [monconer,setMonconer] = useState([]);
+    const [tueconer,setTueconer] = useState([]);
+    const [wedconer,setWedconer] = useState([]);
+    const [thuconer,setThuconer] = useState([]);
+    const [friconer,setFriconer] = useState([]);
 
-    var foods = [monconer,tueconer,wedconer,thuconer,friconer];
+    useEffect(()=> {
+        setMonconer(details.filter((detail) => detail.day === "MON"));
+        setTueconer(details.filter((detail) => detail.day === "TUE"));
+        setWedconer(details.filter((detail) => detail.day === "WEN"))
+        setThuconer(details.filter((detail) => detail.day === "THU"))
+        setFriconer(details.filter((detail) => detail.day === "FRI"))
 
-    const foodRender = () =>{
+        setFoods([monconer,tueconer,wedconer,thuconer,friconer]);
+
+    },[details])
+
+    useEffect(()=> {
+        console.log(foods);
+    },[foods])
+
+    const foodRender = () => {
         for (let i=0; i<foods.length; i++) {
-        foods.map((food) => ( 
-            <th>{food.menu}</th>
-        ))
-     }
-    }
-    ///이름을 배열로
-
-    const corner = {
-        "MON" : [],
-        "TUE" : [],
-        "WEN" : [],
-        "THU" : [],
-        "FRI" : [],
+            foods[i].map((food) => {
+            return <td>{food.menu}</td>
+            })
+        }
     }
 
+    /* const foodRender = () =>{
+        let i=0;
+        foods[i].map((food) =>{
+            i++;
+            food.map((foo)=>{
+                return (<td>{foo.menu}</td>)
+            })
+        })
+    } */
 
     const getFood = () => {
         get('/v1/api/diet', {})
@@ -52,19 +67,8 @@ export default function Food(){
     useEffect(() => {
         AOS.init();
         getFood();
-        console.log(details);
       }, []);
 
-    useEffect(()=> {
-        if (details.length != 0) {
-            for (let i=0; i<details.length; i++) {
-                let string = details[i].day;
-                corner[string].push(details[i]);
-             }
-             console.log(corner)
-        }
-        
-    },[details])
 
       const settings = {
         dots: true,
@@ -73,7 +77,8 @@ export default function Food(){
         slidesToShow: 1,
         slidesToScroll: 1
       };
-      
+    
+
     return (
         <>
         <motion.div 
@@ -88,7 +93,7 @@ export default function Food(){
             <div className='f-contents'>
                 <div className='f-left-contents'>
                 <Slider {...settings}>
-                     {details.map(detail =>{
+                     {foods.map(detail =>{
                                     return (
                                         <div className="f-container">
                                             <div className='food-title' key={detail.index}>
